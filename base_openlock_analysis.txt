@@ -1,0 +1,99 @@
+智能门锁开锁协议深入分析报告
+文件: D:\code\weitang\base.apk
+包名: com.chinavisionary.microtang
+版本: 4.8.2.1
+
+=== BluetoothOperation类分析 ===
+类: Lcn/com/heaton/blelibrary/ble/BluetoothOperation$2;
+类: Lcn/com/heaton/blelibrary/ble/BluetoothOperation$4$1$1;
+类: Lcn/com/heaton/blelibrary/ble/BluetoothOperation$4$1;
+类: Lcn/com/heaton/blelibrary/ble/BluetoothOperation$4$2;
+类: Lcn/com/heaton/blelibrary/ble/BluetoothOperation$4$3;
+类: Lcn/com/heaton/blelibrary/ble/BluetoothOperation$5$1;
+类: Lcn/com/heaton/blelibrary/ble/BluetoothOperation$6;
+类: Lcn/com/heaton/blelibrary/ble/BluetoothOperation$7;
+类: Lcn/com/heaton/blelibrary/ble/BluetoothOperation;
+  - openLock
+  - openLock
+  - openLock2
+  - openLock3
+  - openLockSuper
+  - openLockSuper2
+  - openLockSuper3
+类: Lcn/com/heaton/blelibrary/ble/BluetoothOperation$10;
+类: Lcn/com/heaton/blelibrary/ble/BluetoothOperation$11;
+类: Lcn/com/heaton/blelibrary/ble/BluetoothOperation$12;
+类: Lcn/com/heaton/blelibrary/ble/BluetoothOperation$13;
+类: Lcn/com/heaton/blelibrary/ble/BluetoothOperation$14;
+类: Lcn/com/heaton/blelibrary/ble/BluetoothOperation$15;
+类: Lcn/com/heaton/blelibrary/ble/BluetoothOperation$16;
+类: Lcn/com/heaton/blelibrary/ble/BluetoothOperation$17;
+类: Lcn/com/heaton/blelibrary/ble/BluetoothOperation$18;
+类: Lcn/com/heaton/blelibrary/ble/BluetoothOperation$19;
+类: Lcn/com/heaton/blelibrary/ble/BluetoothOperation$1;
+类: Lcn/com/heaton/blelibrary/ble/BluetoothOperation$20;
+类: Lcn/com/heaton/blelibrary/ble/BluetoothOperation$21;
+类: Lcn/com/heaton/blelibrary/ble/BluetoothOperation$22;
+类: Lcn/com/heaton/blelibrary/ble/BluetoothOperation$23;
+类: Lcn/com/heaton/blelibrary/ble/BluetoothOperation$3;
+类: Lcn/com/heaton/blelibrary/ble/BluetoothOperation$4;
+类: Lcn/com/heaton/blelibrary/ble/BluetoothOperation$5;
+类: Lcn/com/heaton/blelibrary/ble/BluetoothOperation$8;
+类: Lcn/com/heaton/blelibrary/ble/BluetoothOperation$9;
+类: Lcom/intelligoo/sdk/utils/CollectionBluetoothOperationFail;
+
+=== CommandUtil类分析 ===
+类: Lcn/com/heaton/blelibrary/ble/utils/CommandUtil;
+  - openLock
+
+=== 命令相关字符串 (3032 个) ===
+  - .SherlockActivity
+  - .SherlockListActivity
+  - .SherlockPreferenceActivity
+  - Landroid/os/SystemClock;
+  - Ljavax/crypto/IllegalBlockSizeException;
+  - Ltianmu/com/heytap/openid/IOpenID$Default;
+  - Ltianmu/com/heytap/openid/IOpenID$Stub$Proxy;
+  - Ltianmu/com/heytap/openid/IOpenID$Stub;
+  - Ltianmu/com/heytap/openid/IOpenID;
+  - Ltianmu/com/uodis/opendevice/aidl/OpenDeviceIdentifierService$Default;
+  - Ltianmu/com/uodis/opendevice/aidl/OpenDeviceIdentifierService$Stub$Proxy;
+  - Ltianmu/com/uodis/opendevice/aidl/OpenDeviceIdentifierService$Stub;
+  - Ltianmu/com/uodis/opendevice/aidl/OpenDeviceIdentifierService;
+  - Please use SherlockFragmentActivity. Illegal activity: 
+  - URL query string "%s" must not have replace block. For dynamic query parameters use @Query.
+  - com.actionbarsherlock.app
+  - com.heytap.openid.IOpenID
+  - com.uodis.opendevice.aidl.OpenDeviceIdentifierService
+  - illegal blocksize: 
+  -  block
+  -  blockSize: 
+  -  locked
+  -  need block!
+  -  performGetPwd mLockResponseVo is null
+  - $SwitchMap$cn$com$heaton$blelibrary$ota$OtaStatus$OtaCmd
+  - , lockTimeZone=
+  - , lockUtcTime=
+  - , openId='
+  - , subCmd=
+  - , zwaveCommand=
+  - /cmdline
+  - AD_FAILED_PLATFORM_ALREADY_OPEN_COMPEL_REFRESH
+  - ALLOW_EDGE_LOCK
+  - ANIM_STYLE_OPEN_ENTER
+  - ANIM_STYLE_OPEN_EXIT
+  - APK Signing Block does not start at the page  boundary: 
+  - APK Signing Block entry #
+  - APK Signing Block offset out of range: 
+  - APK Signing Block size out of range: 
+  - APK Signing Block sizes in header and footer do not match: 
+  - APK too small for APK Signing Block. ZIP Central Directory offset: 
+  - ARouter openDebug
+  - ARouter openLog
+  - AppBarLayout_android_touchscreenBlocksFocus
+  - AssetManagerProcessor ensureStringBlocks
+  - AssetManagerProcessor ensureStringBlocks failed.
+  - BleNotOpen
+  - BlockInvalidateCallback
+  - Blocking on lock 
+  - BluetoothResultTLV{Cmd=

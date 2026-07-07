@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <TextView
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#fff"
+        android:id="@+id/tianmu_widget_tv_interaction_tips"
+        android:background="@drawable/tianmu_bg_splash_action_button"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:textSize="16sp"
+        android:textColor="#fff"
+        android:id="@+id/tianmu_widget_tv_jump_tips"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tianmu_interaction_jump_tips"/>
+</LinearLayout>

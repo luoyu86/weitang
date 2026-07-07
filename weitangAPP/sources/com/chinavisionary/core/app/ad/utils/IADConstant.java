@@ -1,0 +1,57 @@
+package com.chinavisionary.core.app.ad.utils;
+
+/* JADX INFO: loaded from: classes.dex */
+public interface IADConstant {
+    public static final String ACTIVITY_BANNER_AD_POS_ID = "fcbf3457a0c69367c7";
+    public static final String ADMOBILE_DL_AD_POS_ID = "ac966d36094a167687";
+    public static final String APP_ID = "3529932";
+    public static final int BANNER_AD_AUTO_REFRESH_INTERVAL = 30;
+    public static final String BANNER_AD_ONLY_SUPPORT_PLATFORM = null;
+    public static final String BANNER_AD_POS_ID = "467b6588a2a28bff5b";
+    public static final String BANNER_AD_POS_ID1 = "467b6588a2a28bff5b";
+    public static final String BANNER_AD_POS_ID2 = "8ca4d2887cdc6c37de";
+    public static final String BANNER_AD_POS_ID3 = "098c34f804fd2591e9";
+    public static final String BANNER_AD_SCENE_ID = "";
+    public static final String CONTENT_ALLIANCE_AD_POS_ID = "724469db49ff19761e";
+    public static final String CONTENT_ALLIANCE_AD_POS_ID1 = "724469db49ff19761e";
+    public static final String CONTENT_ALLIANCE_AD_SCENE_ID = "";
+    public static final int DRAW_VOD_AD_COUNT = 1;
+    public static final String DRAW_VOD_AD_ONLY_SUPPORT_PLATFORM = null;
+    public static final String DRAW_VOD_AD_POS_ID = "4d6bee2ec7217adf86";
+    public static final String DRAW_VOD_AD_POS_ID1 = "4d6bee2ec7217adf86";
+    public static final boolean FLOATING_AD_DARK_MODE = false;
+    public static final boolean FLOATING_AD_IS_PAUSED = false;
+    public static final String FULL_SCREEN_VOD_AD_ONLY_SUPPORT_PLATFORM = null;
+    public static final String FULL_SCREEN_VOD_AD_POS_ID = "6620c9299df9013cf5";
+    public static final String FULL_SCREEN_VOD_AD_POS_ID1 = "6620c9299df9013cf5";
+    public static final boolean INTERSTITIAL_AD_AUTO_CLOSE = true;
+    public static final String INTERSTITIAL_AD_ONLY_SUPPORT_PLATFORM = null;
+    public static final boolean INTERSTITIAL_AD_PLAY_WITH_MUTE = false;
+    public static final String INTERSTITIAL_AD_POS_ID = "c3384e056efe641ee5";
+    public static final String INTERSTITIAL_AD_POS_ID1 = "c3384e056efe641ee5";
+    public static final String INTERSTITIAL_AD_SCENE_ID = "";
+    public static final String LIFE_BANNER_AD_POS_ID = "f051c49652fcaa1650";
+    public static final String LOCK_INTERSTITIAL_AD_POS_ID = "c3384e056efe641ee5";
+    public static final String MAIN_BANNER_AD_POS_ID = "5e25471b05ca95af9b";
+    public static final String ME_BANNER_AD_POS_ID = "d30833b2ff3e827112";
+    public static final int NATIVE_AD_COUNT = 2;
+    public static final String NATIVE_AD_ONLY_SUPPORT_PLATFORM = null;
+    public static final boolean NATIVE_AD_PLAY_WITH_MUTE = true;
+    public static final String NATIVE_AD_POS_ID = "c078638e143ac16f46";
+    public static final String NATIVE_AD_POS_ID1 = "c078638e143ac16f46";
+    public static final String NATIVE_AD_POS_ID2 = "9f273c39a30ab43655";
+    public static final String NATIVE_AD_POS_ID3 = "6552acfed554d68c78";
+    public static final String NATIVE_AD_POS_ID4 = "fd3b78d0c93e75330a";
+    public static final String NATIVE_AD_SCENE_ID = "";
+    public static final boolean REWARD_AD_PLAY_WITH_MUTE = false;
+    public static final String REWARD_VOD_AD_ONLY_SUPPORT_PLATFORM = null;
+    public static final String REWARD_VOD_AD_POS_ID = "9ec7704ebcad7364ce";
+    public static final String REWARD_VOD_AD_POS_ID1 = "9ec7704ebcad7364ce";
+    public static final String REWARD_VOD_AD_POS_ID2 = "31167c54f5edc926f4";
+    public static final String REWARD_VOD_AD_SCENE_ID = "";
+    public static final boolean SPLASH_AD_CUSTOM_SKIP_VIEW = false;
+    public static final String SPLASH_AD_ONLY_SUPPORT_PLATFORM = null;
+    public static final String SPLASH_AD_POS_ID = "7b572e7ee204575ab6";
+    public static final String SPLASH_AD_POS_ID1 = "7b572e7ee204575ab6";
+    public static final String TAG = "ADSuyiDemoLog";
+}

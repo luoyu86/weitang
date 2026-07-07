@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg_me_gradient"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/img_bg"
+        android:background="@mipmap/ic_me_bg"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_178"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:textSize="@dimen/sp_16"
+        android:textColor="#80ff0000"
+        android:gravity="center"
+        android:id="@+id/tv_debug_content"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_36"
+        android:text="内测版本"
+        android:rotation="310"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <include
+        android:id="@+id/title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_top_title_height"
+        app:layout_constraintTop_toTopOf="parent"
+        layout="@layout/main_title_fragment_layout"/>
+    <com.chinavisionary.core.weight.BaseSwipeRefreshLayout
+        android:id="@+id/recycler_clean"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_layout"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

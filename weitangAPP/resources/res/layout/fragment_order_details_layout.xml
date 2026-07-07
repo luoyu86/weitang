@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/title_layout"/>
+    <com.chinavisionary.core.weight.BaseSwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout_order_details"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/view_bottom_bg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_back"/>
+    <View
+        android:id="@+id/view_bottom_bg"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_48"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        style="@style/HorizontalLineStyle"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_keep_pay"
+        android:layout_width="@dimen/dp_120"
+        android:layout_height="@dimen/dp_48"
+        android:text="@string/title_keep_pay"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        style="@style/BtnNextStyle"/>
+    <TextView
+        android:textSize="@dimen/sp_18"
+        android:textColor="@color/item_room_tv_price_color"
+        android:id="@+id/tv_count_pay_price"
+        android:layout_marginRight="@dimen/dp_10"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_keep_pay"
+        app:layout_constraintRight_toLeftOf="@+id/btn_keep_pay"
+        app:layout_constraintTop_toTopOf="@+id/btn_keep_pay"
+        style="@style/TvStyle"/>
+    <TextView
+        android:id="@+id/tv_count_pay_title"
+        android:layout_marginRight="@dimen/dp_6"
+        android:text="@string/title_count_fee"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_keep_pay"
+        app:layout_constraintRight_toLeftOf="@+id/tv_count_pay_price"
+        app:layout_constraintTop_toTopOf="@+id/btn_keep_pay"
+        style="@style/TvStyle"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

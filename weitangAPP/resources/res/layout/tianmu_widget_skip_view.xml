@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:id="@+id/tianmu_widget_ll_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <TextView
+        android:textSize="14sp"
+        android:textColor="#fff"
+        android:gravity="center"
+        android:id="@+id/tianmu_widget_tv_skip"
+        android:background="@drawable/tianmu_shape_45000000_radius20"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="27dp"
+        android:layout_marginRight="10dp"
+        android:minWidth="60dp"/>
+    <ImageView
+        android:id="@+id/tianmu_widget_iv_close"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        android:src="@drawable/tianmu_reward_close"/>
+</LinearLayout>

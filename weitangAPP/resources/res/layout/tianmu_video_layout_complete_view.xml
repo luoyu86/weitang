@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tianmu_video_complete_container"
+    android:background="#33000000"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_gravity="center"
+            android:id="@+id/tianmu_video_iv_replay"
+            android:background="@drawable/tianmu_video_shape_play_bg"
+            android:padding="@dimen/tianmu_video_controller_icon_padding"
+            android:layout_width="@dimen/tianmu_video_play_btn_size"
+            android:layout_height="@dimen/tianmu_video_play_btn_size"
+            android:src="@drawable/tianmu_video_ic_action_replay"/>
+        <TextView
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/tianmu_video_replay"/>
+    </LinearLayout>
+</FrameLayout>

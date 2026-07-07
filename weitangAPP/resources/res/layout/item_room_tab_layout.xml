@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:id="@+id/llayout_tab_room"
+    android:layout_width="@dimen/dp_80"
+    android:layout_height="match_parent">
+    <TextView
+        android:textSize="@dimen/sp_15"
+        android:textColor="@color/tab_item_select_color"
+        android:gravity="center"
+        android:id="@+id/tv_room_spec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="开间"/>
+    <TextView
+        android:textSize="@dimen/sp_15"
+        android:textColor="@color/tab_item_select_color"
+        android:id="@+id/tv_tab_line"
+        android:background="@color/tab_item_select_color"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_2"
+        android:layout_marginTop="@dimen/dp_4"
+        android:text="开间"/>
+</LinearLayout>

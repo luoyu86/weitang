@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_bg"
+    android:padding="@dimen/dp_30"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:textColor="@color/colore757575"
+        android:gravity="bottom|center_horizontal"
+        android:id="@+id/tv_tip"
+        android:paddingBottom="@dimen/dp_20"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="@string/title_tip_login"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/TvStyle"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_login"
+        android:background="@drawable/bg_btn_radius_4"
+        android:layout_width="@dimen/dp_200"
+        android:text="@string/title_login"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_tip"
+        style="@style/BtnNextStyle"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

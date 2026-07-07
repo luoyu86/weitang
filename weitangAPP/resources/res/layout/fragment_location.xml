@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/title_layout"/>
+    <com.chinavisionary.core.weight.CoreRoundedImageView
+        android:id="@+id/img_map"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_160"
+        android:src="@mipmap/ic_location_map"
+        android:scaleType="centerCrop"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_back"/>
+    <com.chinavisionary.core.weight.BaseRecyclerView
+        android:id="@+id/recycler_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_map"/>
+    <Button
+        android:id="@+id/btn_confirm"
+        android:text="@string/title_location_here"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        style="@style/BtnNextStyle"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

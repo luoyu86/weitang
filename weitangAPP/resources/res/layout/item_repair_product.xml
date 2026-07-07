@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/view_repair_product"
+    android:paddingBottom="@dimen/dp_10"
+    android:layout_width="@dimen/dp_72"
+    android:layout_height="wrap_content">
+    <com.chinavisionary.core.weight.CoreRoundedImageView
+        android:id="@+id/img_product_cover"
+        android:visibility="visible"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_60"
+        android:src="@drawable/ic_default"
+        android:scaleType="centerCrop"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:gravity="center"
+        android:id="@+id/tv_title"
+        android:visibility="visible"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:text="帕拉梅拉"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_product_cover"
+        style="@style/TvStyle"/>
+    <TextView
+        android:gravity="center"
+        android:id="@+id/tv_device_name"
+        android:background="@drawable/ic_default"
+        android:visibility="gone"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_60"
+        android:layout_marginTop="@dimen/dp_10"
+        android:text="帕拉梅拉"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/TvStyle"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

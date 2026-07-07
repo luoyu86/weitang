@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/tianmu_include_normal_action_bar"/>
+    <ProgressBar
+        android:id="@+id/tianmu_library_pb_progress"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:max="100"
+        android:indeterminateOnly="false"
+        style="?android:attr/progressBarStyleHorizontal"/>
+    <WebView
+        android:id="@+id/tianmu_webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/dp_62"
+    android:layout_height="@dimen/dp_62"
+    android:layout_marginRight="@dimen/dp_5">
+    <CheckBox
+        android:textSize="@dimen/sp_15"
+        android:textColor="@drawable/bg_fragment_pre_look_room_text_color"
+        android:gravity="top|center_horizontal"
+        android:id="@+id/cb_week_value"
+        android:background="@drawable/bg_fragment_pre_look_room_content"
+        android:paddingTop="@dimen/dp_8"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:button="@null"/>
+    <CheckBox
+        android:enabled="false"
+        android:textSize="@dimen/sp_13"
+        android:textColor="@drawable/bg_item_pre_look_room_time_text_color"
+        android:id="@+id/cb_date"
+        android:paddingBottom="@dimen/dp_8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:button="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

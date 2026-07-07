@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg_alert_grad"
+    android:padding="@dimen/dp_12"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/dp_6"
+    android:layout_marginBottom="@dimen/dp_6">
+    <TextView
+        android:id="@+id/tv_address"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/TvStyle"/>
+    <TextView
+        android:id="@+id/tv_device_supplier_name"
+        android:layout_marginTop="@dimen/dp_8"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_address"
+        style="@style/TvStyle"/>
+    <TextView
+        android:id="@+id/tv_device_id"
+        android:layout_marginLeft="@dimen/dp_12"
+        android:layout_marginTop="@dimen/dp_8"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_device_supplier_name"
+        app:layout_constraintLeft_toRightOf="@+id/tv_device_supplier_name"
+        style="@style/TvStyle"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

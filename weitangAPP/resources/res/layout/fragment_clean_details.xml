@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/title_layout"/>
+    <com.chinavisionary.core.weight.BaseSwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout_clean_details"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0"
+        app:layout_constraintBottom_toTopOf="@+id/view_bottom_bg"
+        app:layout_constraintTop_toBottomOf="@+id/tv_back"/>
+    <View
+        android:id="@+id/view_bottom_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        style="@style/BottomViewBgStyle"/>
+    <Button
+        android:id="@+id/btn_subscribe_clean"
+        android:text="@string/title_subscribe_clean"
+        app:layout_constraintBottom_toBottomOf="@+id/view_bottom_bg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view_bottom_bg"
+        style="@style/BottomBtnStyle"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

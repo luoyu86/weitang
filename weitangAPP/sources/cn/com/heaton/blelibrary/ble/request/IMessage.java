@@ -1,0 +1,8 @@
+package cn.com.heaton.blelibrary.ble.request;
+
+import android.os.Message;
+
+/* JADX INFO: loaded from: classes.dex */
+public interface IMessage {
+    void handleMessage(Message message);
+}

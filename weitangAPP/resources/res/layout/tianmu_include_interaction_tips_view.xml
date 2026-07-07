@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <TextView
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:id="@+id/tianmu_widget_tv_interaction_tips"
+        android:visibility="gone"
+        style="@style/tianmu_widget_interaction_tips_style"/>
+    <TextView
+        android:textSize="16sp"
+        android:id="@+id/tianmu_widget_tv_jump_tips"
+        android:visibility="gone"
+        android:text="@string/tianmu_interaction_jump_tips"
+        style="@style/tianmu_widget_interaction_tips_style"/>
+</merge>

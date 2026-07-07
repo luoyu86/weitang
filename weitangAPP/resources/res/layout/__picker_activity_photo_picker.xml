@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@android:color/background_dark"
+    android:fitsSystemWindows="false"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:id="@+id/container_grid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="48dp"/>
+    <FrameLayout
+        android:id="@+id/container_page"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <com.chinavisionary.core.photo.photopicker.widget.Titlebar
+        android:id="@+id/titlebar"
+        android:background="?attr/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        app:mtb_rightTxt="@string/__picker_done"
+        app:mtb_title="@string/__picker_title"/>
+    <View
+        android:id="@+id/status_bg_view"
+        android:background="?attr/colorPrimaryDark"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
+</FrameLayout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/title_layout"/>
+    <EditText
+        android:id="@+id/edt_sn"
+        android:text="4112551161"
+        android:hint="请输入序列号"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_back"
+        style="@style/EdtLoginStyle"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_get_pwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_10"
+        android:text="获取秘钥"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_sn"
+        style="@style/BtnContactStyle"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_copy_pwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_10"
+        android:text="拷贝秘钥"
+        app:layout_constraintLeft_toRightOf="@+id/btn_get_pwd"
+        app:layout_constraintTop_toBottomOf="@+id/edt_sn"
+        style="@style/BtnContactStyle"/>
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textIsSelectable="true"
+        app:layout_constraintTop_toBottomOf="@+id/btn_copy_pwd"
+        style="@style/TvStyle"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

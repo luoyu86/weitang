@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/color_white"/>
+    <item
+        android:gravity="center"
+        android:bottom="@dimen/dp_200">
+        <bitmap
+            android:gravity="center"
+            android:src="@mipmap/ic_splash_logo"
+            android:antialias="true"/>
+    </item>
+    <item
+        android:gravity="center"
+        android:bottom="@dimen/dp_110">
+        <bitmap
+            android:gravity="center"
+            android:src="@mipmap/ic_splash_title"
+            android:antialias="true"/>
+    </item>
+</layer-list>

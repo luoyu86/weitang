@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/title_layout"/>
+    <com.chinavisionary.core.weight.BaseSwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:paddingTop="@dimen/dp_10"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/view_bottom_bg"
+        app:layout_constraintTop_toBottomOf="@+id/tv_back"/>
+    <View
+        android:id="@+id/view_bottom_bg"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        style="@style/BottomViewBgStyle"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_submit"
+        android:visibility="gone"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:text="@string/title_submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        style="@style/BottomBtnStyle"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

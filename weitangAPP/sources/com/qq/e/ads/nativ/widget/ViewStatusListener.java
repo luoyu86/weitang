@@ -1,0 +1,16 @@
+package com.qq.e.ads.nativ.widget;
+
+import android.view.MotionEvent;
+
+/* JADX INFO: loaded from: classes2.dex */
+public interface ViewStatusListener {
+    void onAttachToWindow();
+
+    void onDetachFromWindow();
+
+    void onDispatchTouchEvent(MotionEvent motionEvent);
+
+    void onWindowFocusChanged(boolean z);
+
+    void onWindowVisibilityChanged(int i2);
+}

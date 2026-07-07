@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/title_layout"/>
+    <com.chinavisionary.core.weight.BaseSwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/dp_0"
+        android:layout_marginBottom="@dimen/dp_10"
+        app:layout_constraintBottom_toTopOf="@+id/tv_alert_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_back"
+        style="@style/BaseRecyclerStyle"/>
+    <TextView
+        android:textColor="@color/colorAEAEAE"
+        android:id="@+id/tv_alert_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tip_urgent"
+        app:layout_constraintBottom_toTopOf="@+id/tv_alert_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        style="@style/TvStyle"/>
+    <TextView
+        android:textColor="@color/tab_item_select_color"
+        android:textColorLink="@color/tab_item_select_color"
+        android:gravity="center"
+        android:autoLink="phone"
+        android:id="@+id/tv_alert_content"
+        android:paddingLeft="@dimen/dp_14"
+        android:paddingTop="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_14"
+        android:paddingBottom="@dimen/dp_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="@dimen/dp_6"
+        app:layout_constraintBottom_toTopOf="@+id/btn_submit"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        style="@style/TvStyle"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_submit"
+        android:text="@string/title_submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        style="@style/BtnNextStyle"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

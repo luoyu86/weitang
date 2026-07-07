@@ -1,0 +1,30 @@
+package c.q.a.b;
+
+import android.bluetooth.BluetoothAdapter;
+import android.text.TextUtils;
+
+/* JADX INFO: loaded from: classes2.dex */
+public class a {
+
+    /* JADX INFO: renamed from: a, reason: collision with root package name */
+    public static volatile boolean f3116a = false;
+
+    public static String getBluetoothMac(String str) {
+        if (!TextUtils.isEmpty(str) && BluetoothAdapter.checkBluetoothAddress(str)) {
+            return str;
+        }
+        return (str.substring(0, 2) + ":" + str.substring(2, 4) + ":" + str.substring(4, 6) + ":" + str.substring(6, 8) + ":" + str.substring(8, 10) + ":" + str.substring(10, 12)).toUpperCase();
+    }
+
+    public static boolean isEqualsMac(String str, String str2) {
+        return getBluetoothMac(str).equalsIgnoreCase(str2);
+    }
+
+    public static boolean isScan() {
+        return f3116a;
+    }
+
+    public static void setupEnableScan(boolean z) {
+        f3116a = z;
+    }
+}

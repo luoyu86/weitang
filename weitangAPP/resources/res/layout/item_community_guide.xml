@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_white"
+    android:paddingLeft="@dimen/dp_14"
+    android:paddingTop="@dimen/dp_8"
+    android:paddingRight="@dimen/dp_14"
+    android:paddingBottom="@dimen/dp_8"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/tv_title"
+        android:paddingBottom="@dimen/dp_8"
+        android:layout_width="match_parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/TitleTvStyle"/>
+    <TextView
+        android:textColor="@color/item_room_tv_price_color"
+        android:id="@+id/tv_top_sticky"
+        android:paddingRight="@dimen/dp_12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title"/>
+    <TextView
+        android:textSize="@dimen/sp_12"
+        android:gravity="center"
+        android:id="@+id/tv_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_top_sticky"
+        app:layout_constraintLeft_toRightOf="@+id/tv_top_sticky"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

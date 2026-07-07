@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <com.tianmu.biz.widget.shimmer.ShimmerFrameLayout
+            android:id="@+id/tianmu_tsfl_slide"
+            android:layout_width="25dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="30dp"
+            android:layout_centerHorizontal="true"
+            app:tianmu_shimmer_auto_start="false"
+            app:tianmu_shimmer_base_alpha="0"
+            app:tianmu_shimmer_direction="bottom_to_top"
+            app:tianmu_shimmer_duration="900"
+            app:tianmu_shimmer_fixed_height="250dp"
+            app:tianmu_shimmer_shape="linear"
+            app:tianmu_shimmer_tilt="0">
+            <View
+                android:orientation="vertical"
+                android:id="@+id/tianmu_tsfl_transparency_view"
+                android:background="#9fffffff"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"/>
+        </com.tianmu.biz.widget.shimmer.ShimmerFrameLayout>
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_below="@+id/tianmu_tsfl_slide">
+            <include layout="@layout/tianmu_include_interaction_tips_view"/>
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/tianmu_iv_finger"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/tianmu_sliding_screen_figer"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+</LinearLayout>

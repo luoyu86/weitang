@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg_alert"
+    android:padding="@dimen/dp_20"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_178">
+    <TextView
+        android:textSize="@dimen/sp_18"
+        android:textColor="@color/color000000"
+        android:gravity="bottom|center_horizontal"
+        android:id="@+id/tv_title"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_alert_tip"
+        android:includeFontPadding="false"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:textColor="@color/color000000"
+        android:gravity="center"
+        android:id="@+id/tv_alert_camera"
+        android:background="@drawable/bg_btn_store_6_radius"
+        android:layout_marginTop="@dimen/dp_10"
+        android:text="@string/title_alert_camera"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title"
+        style="@style/BtnNextStyle"/>
+    <TextView
+        android:textColor="@color/color000000"
+        android:gravity="center"
+        android:id="@+id/tv_alert_photo_select"
+        android:background="@drawable/bg_btn_store_6_radius"
+        android:layout_marginTop="@dimen/dp_10"
+        android:text="@string/title_alert_select_photo"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_alert_camera"
+        style="@style/BtnNextStyle"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

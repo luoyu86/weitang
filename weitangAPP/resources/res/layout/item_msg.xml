@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_EEEEEE"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:textSize="@dimen/sp_12"
+        android:textColor="@color/colore757575"
+        android:gravity="top|center_horizontal"
+        android:id="@+id/tv_time"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_36"
+        android:text="2019-05-10 12：22"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/llayout_msg_content"
+        android:background="@drawable/bg_msg"
+        android:paddingLeft="@dimen/dp_14"
+        android:paddingRight="@dimen/dp_14"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_100"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_20"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_time">
+        <TextView
+            android:textSize="@dimen/sp_15"
+            android:textColor="@color/color383838"
+            android:gravity="center_vertical"
+            android:id="@+id/tv_title"
+            android:paddingTop="@dimen/dp_15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="入住确认"
+            android:includeFontPadding="false"/>
+        <TextView
+            android:textSize="@dimen/sp_12"
+            android:textColor="@color/color686868"
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            android:text="入住内容提示消息"
+            android:includeFontPadding="false"/>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

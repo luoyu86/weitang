@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorF8F8F8"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/title_white_bg_layout_merge"/>
+    <com.chinavisionary.core.weight.BaseSwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:paddingTop="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_10"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:layout_marginRight="@dimen/dp_15"
+        app:layout_constraintBottom_toTopOf="@+id/cb_reason"
+        app:layout_constraintTop_toBottomOf="@+id/tv_back"/>
+    <CheckBox
+        android:id="@+id/cb_reason"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginBottom="@dimen/dp_22"
+        android:button="@drawable/bg_round_checkbox"
+        app:layout_constraintBottom_toTopOf="@+id/view_bottom_bg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        style="@style/PayCbStyle"/>
+    <TextView
+        android:textColor="@color/color_333333"
+        android:id="@+id/tv_reason"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_8"
+        app:layout_constraintBottom_toBottomOf="@+id/cb_reason"
+        app:layout_constraintLeft_toRightOf="@+id/cb_reason"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/cb_reason"
+        style="@style/TvStyle"/>
+    <View
+        android:id="@+id/view_bottom_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        style="@style/BottomViewBgStyle"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_submit"
+        android:text="@string/title_next"
+        app:layout_constraintBottom_toBottomOf="@+id/view_bottom_bg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view_bottom_bg"
+        style="@style/BottomBtnStyle"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

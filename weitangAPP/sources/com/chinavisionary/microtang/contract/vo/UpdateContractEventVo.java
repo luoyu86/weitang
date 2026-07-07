@@ -1,0 +1,7 @@
+package com.chinavisionary.microtang.contract.vo;
+
+import com.chinavisionary.core.app.net.base.dto.BaseVo;
+
+/* JADX INFO: loaded from: classes.dex */
+public class UpdateContractEventVo extends BaseVo {
+}

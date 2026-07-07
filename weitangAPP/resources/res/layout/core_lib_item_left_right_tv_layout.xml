@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_white"
+    android:paddingLeft="@dimen/dp_24"
+    android:paddingRight="@dimen/dp_24"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/tv_left_title"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_right_value"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_right_value"
+        style="@style/ItemEditMeHeadTextViewStyle"/>
+    <TextView
+        android:gravity="center"
+        android:id="@+id/tv_center"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_52"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/ItemEditMeHeadTextViewStyle"/>
+    <TextView
+        android:gravity="center"
+        android:id="@+id/tv_right_value"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_52"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:drawableRight="@drawable/core_lib_ic_item_arrow_right_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        style="@style/ItemEditMeHeadTextViewStyle"/>
+    <View
+        android:id="@+id/view_split_line"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        style="@style/HorizontalLineStyle"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

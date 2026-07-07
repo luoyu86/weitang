@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:textSize="@dimen/sp_18"
+        android:textColor="@color/color383838"
+        android:gravity="center"
+        android:id="@+id/tv_pay_title"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_48"
+        android:layout_marginTop="@dimen/dp_12"
+        android:text="@string/title_select_pay_model"
+        android:drawableLeft="@mipmap/ic_title_left"
+        android:drawablePadding="@dimen/dp_8"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:textSize="@dimen/sp_18"
+        android:textColor="@color/item_room_tv_price_color"
+        android:gravity="center"
+        android:id="@+id/tv_pay_price_value"
+        android:paddingRight="@dimen/dp_14"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_48"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_pay_title"/>
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_pay_title"
+        layout="@layout/item_untitle_wx_alipay_layout"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

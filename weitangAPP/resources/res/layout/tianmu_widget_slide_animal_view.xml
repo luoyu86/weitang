@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:id="@+id/tianmu_fl_slide_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <View
+        android:layout_gravity="center"
+        android:id="@+id/tianmu_fl_slide_view_mask"
+        android:background="@drawable/tianmu_shape_33000000_radius8"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <com.tianmu.biz.widget.interaction.slideanimalview.DottedLineView
+        android:id="@+id/tianmu_iv_curve_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:textColor="#ffffff"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/tianmu_tv_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <ImageView
+        android:id="@+id/tianmu_iv_finger"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/tianmu_sliding_animal_figer"/>
+</FrameLayout>

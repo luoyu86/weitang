@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tool_bar"
+        android:background="?attr/colorPrimaryDark"
+        android:fitsSystemWindows="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize">
+        <com.chinavisionary.core.weight.MarqueeTextView
+            android:textSize="@dimen/sp_16"
+            android:textColor="@color/color_title"
+            android:ellipsize="marquee"
+            android:layout_gravity="center"
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:singleLine="true"/>
+    </androidx.appcompat.widget.Toolbar>
+    <View
+        android:background="@color/color_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0_5"/>
+</LinearLayout>

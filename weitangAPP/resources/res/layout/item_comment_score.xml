@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingLeft="@dimen/dp_10"
+    android:paddingBottom="@dimen/dp_10"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/TvStyle"/>
+    <com.hedgehog.ratingbar.RatingBar
+        android:gravity="center"
+        android:id="@+id/rating_bar_praise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        app:clickable="true"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title"
+        app:starCount="5"
+        app:starEmpty="@mipmap/ic_new_comment_star_normal"
+        app:starFill="@mipmap/ic_new_comment_star_sel"
+        app:starHalf="@mipmap/ic_new_comment_star_sel"
+        app:starImageHeight="@dimen/dp_30"
+        app:starImagePadding="@dimen/dp_6"
+        app:starImageWidth="@dimen/dp_30"/>
+    <TextView
+        android:id="@+id/tv_tip_praise_level"
+        android:visibility="visible"
+        android:layout_marginLeft="@dimen/dp_20"
+        app:layout_constraintBottom_toBottomOf="@+id/rating_bar_praise"
+        app:layout_constraintLeft_toRightOf="@+id/rating_bar_praise"
+        app:layout_constraintTop_toTopOf="@+id/rating_bar_praise"
+        style="@style/TvStyle"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

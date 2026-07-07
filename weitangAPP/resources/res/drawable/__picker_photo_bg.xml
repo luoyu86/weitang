@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true">
+        <shape>
+            <solid android:color="@color/__picker_item_selected_cover"/>
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <gradient
+                android:startColor="@color/__picker_item_unselected_border"
+                android:endColor="@color/__picker_item_unselected_border"
+                android:angle="90"
+                android:type="linear"
+                android:centerX="0.5"
+                android:centerY="0.5"
+                android:centerColor="@color/__picker_item_unselected_center"/>
+        </shape>
+    </item>
+</selector>

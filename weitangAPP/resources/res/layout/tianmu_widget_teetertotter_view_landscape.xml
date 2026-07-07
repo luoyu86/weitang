@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:id="@+id/tianmu_teetertotter_ll_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:id="@+id/tianmu_progressbar_container"
+        android:background="@drawable/tianmu_shape_teetertotter_bg"
+        android:layout_width="160dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginBottom="19dp">
+        <com.tianmu.biz.widget.sway.TeetertotterProgressBar
+            android:id="@+id/tianmu_teetertotter_progressbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            app:tianmu_radius="12dp"/>
+        <ImageView
+            android:id="@+id/tianmu_iv_def_circle"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/tianmu_teetertotter_def_circle"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="160dp"
+        android:layout_below="@+id/tianmu_progressbar_container">
+        <include layout="@layout/tianmu_include_interaction_tips_view"/>
+    </LinearLayout>
+</LinearLayout>

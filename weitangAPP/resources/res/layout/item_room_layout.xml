@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="@dimen/dp_12"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <com.chinavisionary.core.weight.CoreRoundedImageView
+        android:id="@+id/img_room_cover"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_124"
+        android:src="@mipmap/ic_launcher"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toTopOf="parent"
+        app:riv_corner_radius="@dimen/dp_4"/>
+    <TextView
+        android:textSize="@dimen/sp_14"
+        android:textColor="@color/colore757575"
+        android:id="@+id/tv_room_info"
+        android:paddingLeft="@dimen/dp_6"
+        android:paddingRight="@dimen/dp_6"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_8"
+        android:text="朝北|临地铁|23.3㎡"
+        android:maxLines="1"
+        android:includeFontPadding="false"
+        app:layout_constraintTop_toBottomOf="@+id/img_room_cover"/>
+    <TextView
+        android:textSize="@dimen/sp_14"
+        android:textColor="@color/item_room_tv_price_color"
+        android:id="@+id/tv_room_price"
+        android:paddingLeft="@dimen/dp_6"
+        android:paddingRight="@dimen/dp_6"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_8"
+        android:text="￥1320/月"
+        android:maxLines="1"
+        android:includeFontPadding="false"
+        app:layout_constraintTop_toBottomOf="@+id/tv_room_info"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

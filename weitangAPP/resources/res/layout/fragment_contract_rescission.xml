@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/title_layout"/>
+    <com.chinavisionary.core.weight.BaseSwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout_rescission"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_back"
+        style="@style/BaseRecyclerStyle"/>
+    <CheckBox
+        android:gravity="center_vertical"
+        android:id="@+id/cb_confirm"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_48"
+        android:layout_marginLeft="@dimen/dp_14"
+        android:text="@string/title_confirm_exit_rent_info"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        style="@style/MyCheckBox"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_finish_exit_rent"
+        android:visibility="gone"
+        android:layout_width="@dimen/dp_100"
+        android:text="@string/title_finish_exit_rent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        style="@style/BtnNextStyle"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

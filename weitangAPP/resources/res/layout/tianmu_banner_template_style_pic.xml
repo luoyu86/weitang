@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:layout_width="match_parent"
+    android:layout_height="100dp">
+    <ImageView
+        android:id="@+id/tianmu_banner_iv_pic"
+        android:background="#ececec"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:layout_alignParentLeft="true"/>
+    <TextView
+        android:id="@+id/tianmu_banner_tv_ad_target"
+        android:layout_alignRight="@+id/tianmu_banner_iv_pic"
+        android:layout_alignBottom="@+id/tianmu_banner_iv_pic"
+        style="@style/tianmu_ad_target_base_style"/>
+    <TextView
+        android:id="@+id/tianmu_banner_tv_ad_source"
+        android:layout_alignLeft="@+id/tianmu_banner_iv_pic"
+        android:layout_alignTop="@+id/tianmu_banner_iv_pic"
+        style="@style/tianmu_ad_source_base_style"/>
+    <ImageView
+        android:id="@+id/tianmu_banner_iv_close"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="8dp"
+        android:src="@drawable/tianmu_icon_round_close"
+        android:scaleType="centerCrop"
+        android:layout_alignParentRight="true"/>
+</RelativeLayout>

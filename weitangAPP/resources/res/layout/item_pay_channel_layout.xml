@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingLeft="@dimen/dp_12"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_52">
+    <TextView
+        android:id="@+id/tv_pay"
+        android:text="@string/title_alipay"
+        android:drawableLeft="@mipmap/ic_pay_alipay"
+        android:drawablePadding="@dimen/dp_10"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/PayChannelStyle"/>
+    <TextView
+        android:textSize="@dimen/sp_12"
+        android:textColor="@color/item_room_tv_price_color"
+        android:id="@+id/tv_account_surplus"
+        android:layout_marginLeft="@dimen/dp_10"
+        app:layout_constraintLeft_toRightOf="@+id/tv_pay"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/PayChannelStyle"/>
+    <CheckBox
+        android:id="@+id/cb_pay"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/PayCbStyle"/>
+    <View
+        android:id="@+id/view_alipay_split_line"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        style="@style/HorizontalLineStyle"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

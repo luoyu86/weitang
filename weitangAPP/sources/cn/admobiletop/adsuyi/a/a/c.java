@@ -1,0 +1,5 @@
+package cn.admobiletop.adsuyi.a.a;
+
+/* JADX INFO: loaded from: classes.dex */
+public interface c {
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorF8F8F8"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <View
+        android:id="@+id/view_bg"
+        android:background="@color/color_white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_top_title_height"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <include layout="@layout/title_layout"/>
+    <EditText
+        android:textSize="@dimen/sp_15"
+        android:textColor="@color/color_333333"
+        android:id="@+id/edt_nick_name"
+        android:background="@color/color_white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_54"
+        android:layout_marginTop="@dimen/dp_10"
+        android:hint="@string/hint_input_nick_name"
+        android:singleLine="true"
+        android:maxLength="15"
+        android:textCursorDrawable="@drawable/edt_cursor_drawable"
+        android:paddingStart="@dimen/dp_22"
+        android:paddingEnd="@dimen/dp_54"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_split_line"/>
+    <ImageView
+        android:id="@+id/img_del_edt"
+        android:padding="@dimen/dp_18"
+        android:layout_width="@dimen/dp_54"
+        android:layout_height="@dimen/dp_54"
+        android:src="@mipmap/ic_edt_close"
+        app:layout_constraintBottom_toBottomOf="@+id/edt_nick_name"
+        app:layout_constraintRight_toRightOf="@+id/edt_nick_name"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,8 @@
+package c.b.a.d;
+
+import android.view.View;
+
+/* JADX INFO: loaded from: classes.dex */
+public interface a {
+    void customLayout(View view);
+}

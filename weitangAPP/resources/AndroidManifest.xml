@@ -1,0 +1,1283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    android:versionCode="416"
+    android:versionName="4.8.2.1"
+    android:compileSdkVersion="30"
+    android:compileSdkVersionCodename="11"
+    package="com.chinavisionary.microtang"
+    platformBuildVersionCode="30"
+    platformBuildVersionName="11">
+    <uses-sdk
+        android:minSdkVersion="21"
+        android:targetSdkVersion="30"/>
+    <supports-screens
+        android:anyDensity="true"
+        android:smallScreens="true"
+        android:normalScreens="true"
+        android:largeScreens="true"
+        android:resizeable="true"
+        android:xlargeScreens="true"/>
+    <uses-feature android:name="android.hardware.location.gps"/>
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true"/>
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="true"/>
+    <uses-feature android:name="android.hardware.camera.flash"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_OWNER_DATA"/>
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+    <uses-permission android:name="com.vivo.notification.permission.BADGE_ICON"/>
+    <queries>
+        <package android:name="com.tencent.mm"/>
+        <package android:name="com.baidu.BaiduMap"/>
+        <package android:name="com.autonavi.minimap"/>
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE"/>
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+            <data
+                android:mimeType="*/*"
+                android:scheme="http"/>
+        </intent>
+        <intent>
+            <action android:name="android.media.action.VIDEO_CAPTURE"/>
+        </intent>
+        <package android:name="com.android.creator"/>
+        <package android:name="com.zhuoyi.security.lite"/>
+        <package android:name="com.freeme.secureguard"/>
+        <package android:name="com.android.secureguard"/>
+        <package android:name="com.mdid.msa"/>
+        <package android:name="com.samsung.android.deviceidservice"/>
+        <package android:name="com.coolpad.deviceidsupport"/>
+        <package android:name="com.heytap.openid"/>
+        <package android:name="com.google.android.gms"/>
+        <package android:name="com.android.vending"/>
+        <package android:name="com.huawei.hwid"/>
+        <package android:name="com.huawei.hwid.tv"/>
+        <package android:name="com.huawei.hms"/>
+        <package android:name="com.asus.msa.SupplementaryDID"/>
+        <package android:name="com.zui.deviceidservice"/>
+        <intent>
+            <action android:name="*"/>
+            <data android:scheme="tbopen"/>
+        </intent>
+        <package android:name="com.eg.android.AlipayGphone"/>
+        <package android:name="com.eg.android.AlipayGphoneRC"/>
+        <package android:name="hk.alipay.wallet"/>
+        <package android:name="hk.alipay.walletRC"/>
+        <package android:name="com.xingin.xhs"/>
+        <package android:name="com.qiyi.video"/>
+        <package android:name="com.smile.gifmaker"/>
+        <package android:name="com.baidu.searchbox"/>
+        <package android:name="com.dragon.read"/>
+        <package android:name="com.sankuai.meituan"/>
+        <package android:name="com.sina.weibo"/>
+        <package android:name="com.wuba"/>
+        <package android:name="com.sankuai.meituan.takeoutnew"/>
+        <package android:name="com.unionpay"/>
+        <package android:name="cn.soulapp.android"/>
+        <package android:name="com.yaya.zone"/>
+        <package android:name="com.anjuke.android.app"/>
+        <package android:name="com.dianping.v1"/>
+        <package android:name="com.wudaokou.hippo"/>
+        <package android:name="com.taobao.litetao"/>
+        <package android:name="com.taobao.taobao"/>
+        <package android:name="me.ele"/>
+        <package android:name="com.taobao.live"/>
+        <package android:name="com.tmall.wireless"/>
+        <package android:name="com.youku.phone"/>
+        <package android:name="com.xunmeng.pinduoduo"/>
+        <package android:name="com.achievo.vipshop"/>
+        <package android:name="com.jingdong.app.mall"/>
+        <package android:name="com.immomo.momo"/>
+        <package android:name="com.p1.mobile.putong"/>
+        <package android:name="com.kaola"/>
+        <package android:name="com.taobao.trip"/>
+        <package android:name="com.Qunar"/>
+        <package android:name="ctrip.android.view"/>
+        <package android:name="com.taobao.idlefish"/>
+        <package android:name="com.youxiang.soyoungapp"/>
+        <package android:name="me.yidui"/>
+        <package android:name="com.homelink.android"/>
+        <package android:name="com.taobao.movie.android"/>
+        <package android:name="com.sohu.newsclient"/>
+        <package android:name="tv.danmaku.bili"/>
+        <package android:name="com.zhihu.android"/>
+        <package android:name="com.alibaba.android.rimet"/>
+        <package android:name="com.quark.browser"/>
+        <package android:name="com.shuqi.controller"/>
+        <package android:name="com.UCMobile"/>
+        <package android:name="com.cainiao.wireless"/>
+        <package android:name="com.sdu.didi.psnger"/>
+        <package android:name="com.kuaishou.nebula"/>
+        <package android:name="com.alibaba.wireless.seller"/>
+        <package android:name="com.sankuai.youxuan"/>
+        <package android:name="com.netease.yanxuan"/>
+        <package android:name="com.meituan.imeituan"/>
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+            <category android:name="android.intent.category.BROWSABLE"/>
+            <data android:scheme="https"/>
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.MAIN"/>
+            <category android:name="android.intent.category.LAUNCHER"/>
+        </intent>
+    </queries>
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="true"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE"/>
+    <uses-permission android:name="com.sec.android.provider.badge.permission.READ"/>
+    <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE"/>
+    <uses-permission android:name="com.oppo.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.oppo.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.READ_APP_BADGE"/>
+    <uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.htc.launcher.permission.UPDATE_SHORTCUT"/>
+    <uses-permission android:name="com.asus.msa.SupplementaryDID.ACCESS"/>
+    <uses-permission android:name="freemme.permission.msa"/>
+    <uses-permission android:name="freemme.permission.msa.SECURITY_ACCESS"/>
+    <uses-permission android:name="oplus.permission.settings.LAUNCH_FOR_EXPORT"/>
+    <uses-permission android:name="com.vivo.identifier.permission.OAID_STATE_DIALOG"/>
+    <uses-permission android:name="android.permission.FLASHLIGHT"/>
+    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.REORDER_TASKS"/>
+    <permission
+        android:label="@string/agoo_permission_label"
+        android:name="com.chinavisionary.microtang.AGOO"
+        android:protectionLevel="signature"
+        android:description="@string/agoo_permission_description"/>
+    <uses-permission android:name="com.chinavisionary.microtang.AGOO"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="com.sonyericsson.home.permission.BROADCAST_BADGE"/>
+    <uses-permission android:name="com.sonymobile.home.permission.PROVIDER_INSERT_BADGE"/>
+    <uses-permission android:name="com.anddoes.launcher.permission.UPDATE_COUNT"/>
+    <uses-permission android:name="com.majeur.launcher.permission.UPDATE_BADGE"/>
+    <uses-permission android:name="com.huawei.android.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_READ"/>
+    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_WRITE"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <permission
+        android:label="@string/accs_permission_label"
+        android:name="com.chinavisionary.microtang.ACCS"
+        android:protectionLevel="signature"
+        android:description="@string/accs_permission_description"/>
+    <uses-permission android:name="com.chinavisionary.microtang.ACCS"/>
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/>
+    <uses-permission android:name="com.chinavisionary.microtang.openadsdk.permission.TT_PANGOLIN"/>
+    <permission
+        android:name="com.chinavisionary.microtang.openadsdk.permission.TT_PANGOLIN"
+        android:protectionLevel="signature"/>
+    <application
+        android:theme="@style/AppTheme.TranslucentStatusBar"
+        android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher_round"
+        android:name="com.chinavisionary.microtang.app.MicroTangApp"
+        android:testOnly="false"
+        android:allowBackup="false"
+        android:largeHeap="true"
+        android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
+        android:resizeableActivity="true"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:maxAspectRatio="2.4"
+        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+        android:requestLegacyExternalStorage="true">
+        <meta-data
+            android:name="android.webkit.WebView.EnableSafeBrowsing"
+            android:value="false"/>
+        <activity
+            android:theme="@style/SplashTheme"
+            android:name="com.chinavisionary.microtang.SplashActivity"
+            android:screenOrientation="portrait"/>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:exported="false"
+            android:authorities="com.chinavisionary.microtang.provider"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
+        <activity
+            android:name="com.chinavisionary.microtang.login.InterestActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:theme="@style/MainTheme"
+            android:name="com.chinavisionary.microtang.MainActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:theme="@style/MainTheme"
+            android:name="com.chinavisionary.microtang.main.activity.TlPlayForwordActivty"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data
+                    android:scheme="vtown"
+                    android:host="platformapi"
+                    android:path="/backfromalipay"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.chinavisionary.microtang.base.ForwardActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.chinavisionary.microtang.pdf.PdfActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.chinavisionary.microtang.recommend.RecommendActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.chinavisionary.microtang.life.activity.LifeGoodsListActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.chinavisionary.microtang.auth.EduAuthActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.chinavisionary.microtang.open.OpenLockRoomRecordActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.chinavisionary.microtang.me.DeviceRecordTabActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.chinavisionary.microtang.me.AboutAppActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.chinavisionary.microtang.me.FundActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.chinavisionary.microtang.me.CancelAccountActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name="com.chinavisionary.microtang.me.CancelAccountSuccessActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.chinavisionary.microtang.community.CommunityActivityTabActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.chinavisionary.microtang.community.CommunityActivityEvaluateActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.chinavisionary.microtang.tip.TipActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.chinavisionary.microtang.msg.MsgActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.chinavisionary.microtang.doorpwd.DoorPasswordActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name="com.chinavisionary.microtang.order.ServiceOrderTabActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.chinavisionary.microtang.buycart.BuyCartActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name="com.chinavisionary.microtang.push.PushMsgActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.chinavisionary.microtang.auth.MeAuthListActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.chinavisionary.microtang.auth.MeAuthDetailsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.chinavisionary.microtang.web.WebViewActivity"
+            android:exported="false"
+            android:configChanges="screenSize|screenLayout|orientation|keyboardHidden|keyboard"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name="com.chinavisionary.microtang.web.bridge.BridgeWebViewActivity"
+            android:exported="false"
+            android:configChanges="screenSize|screenLayout|orientation|keyboardHidden|keyboard"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name="com.chinavisionary.microtang.login.LoginActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name="com.chinavisionary.microtang.room.RoomDetailsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name="com.chinavisionary.microtang.room.RoomSourceDetailsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name="com.chinavisionary.microtang.room.KeepRentActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name="com.chinavisionary.microtang.map.MapActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name="com.chinavisionary.microtang.subscribe.SubscribeLookActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.chinavisionary.microtang.contract.ContractActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name="com.chinavisionary.microtang.contract.ContractDetailsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name="com.chinavisionary.microtang.repair.RepairActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name="com.chinavisionary.microtang.repair.RepairOrderDetailsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name="com.chinavisionary.microtang.repair.RepairOrderCommentActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name="com.chinavisionary.microtang.clean.CleanDetailsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name="com.chinavisionary.microtang.repair.RepairHistoryActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.chinavisionary.microtang.open.LiveCheckActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.chinavisionary.microtang.service.CustomerServiceActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name="com.chinavisionary.microtang.auth.IDAuthActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name="com.chinavisionary.microtang.pre.ReserveListActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name="com.chinavisionary.microtang.pre.ReserveRoomActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.chinavisionary.microtang.room.SearchRoomActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateVisible"/>
+        <activity
+            android:name="com.chinavisionary.microtang.comment.CommentActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateVisible"/>
+        <activity
+            android:name="com.chinavisionary.microtang.comment.CommentTabActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateVisible"/>
+        <activity
+            android:name="com.chinavisionary.microtang.prelook.PreLookActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.chinavisionary.microtang.me.EditMeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name="com.chinavisionary.microtang.me.WalletActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name="com.chinavisionary.microtang.order.OrderTabActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name="com.chinavisionary.microtang.order.OrderDetailsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name="com.chinavisionary.microtang.order.CleanOrderDetailsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name="com.chinavisionary.microtang.order.CleanOrderCommentActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name="com.chinavisionary.microtang.card.CardCouponActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name="com.chinavisionary.microtang.me.DGJPwdActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name="com.chinavisionary.microtang.merchant.MerchantMainActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name="com.chinavisionary.microtang.settlement.SettlementActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:name="com.chinavisionary.microtang.wxapi.WXEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="wx566d59045c104e04"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:label="@string/app_name"
+            android:name="com.chinavisionary.microtang.wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.chinavisionary.microtang.msg.MsgDetailsActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.chinavisionary.microtang.bill.BillTabActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.chinavisionary.microtang.main.activity.PaySuccessTipActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
+        <meta-data
+            android:name="design_width_in_dp"
+            android:value="360"/>
+        <meta-data
+            android:name="design_height_in_dp"
+            android:value="640"/>
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5ccffd8d3fc195f3330001af"/>
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="qq.com"/>
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.4"/>
+        <meta-data
+            android:name="android.notch_support"
+            android:value="true"/>
+        <meta-data
+            android:name="notch.config"
+            android:value="portrait|landscape"/>
+        <meta-data
+            android:name="TD_APP_ID"
+            android:value="D22FF4D4C94A46EE99AAE50F24F00E11"/>
+        <meta-data
+            android:name="TD_CHANNEL_ID"
+            android:value="play.qq.com"/>
+        <receiver android:name="com.chinavisionary.microtang.push.PushReceive">
+            <intent-filter>
+                <action android:name="com.alibaba.push2.action.NOTIFICATION_OPENED"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.alibaba.push2.action.NOTIFICATION_REMOVED"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.accs.intent.action.COMMAND"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.taobao.intent.action.COMMAND"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.alibaba.sdk.android.push.RECEIVE"/>
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.taobao.accs.EventReceiver"
+            android:enabled="false"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+        </receiver>
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false"/>
+        <service
+            android:name="com.alibaba.sdk.android.push.channel.KeepChannelService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="false"
+            android:process="@string/aliyun_accs_channel_process"/>
+        <activity
+            android:name="com.chinavisionary.twlib.open.OpenDoorActivity"
+            android:screenOrientation="portrait"/>
+        <service
+            android:name="com.chinavisionary.twlib.open.service.OpenDoorService"
+            android:exported="false"/>
+        <service
+            android:name="com.intelligoo.sdk.BluetoothLeService"
+            android:enabled="true"/>
+        <service
+            android:name="com.intelligoo.sdk.AutoOpenService"
+            android:enabled="true"/>
+        <service android:name="cn.com.heaton.blelibrary.ble.BluetoothLeService"/>
+        <activity android:name="com.huawei.hms.hmsscankit.ScanKitActivity"/>
+        <service
+            android:name="com.mars.marsbluelock.ble.BluetoothLeService"
+            android:enabled="true"/>
+        <activity
+            android:name="com.chinavisionary.paymentlibrary.PayTypeActivity"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:configChanges="fontScale|layoutDirection|density|smallestScreenSize|screenSize|screenLayout|orientation|navigation|keyboardHidden|keyboard|locale"/>
+        <activity
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:name="com.alipay.sdk.app.H5AuthActivity"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:configChanges="fontScale|layoutDirection|density|smallestScreenSize|screenSize|screenLayout|orientation|navigation|keyboardHidden|keyboard|locale"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:hardwareAccelerated="false"/>
+        <activity
+            android:theme="@style/imagepicker_ImagePickerTheme"
+            android:name="com.chinavisionary.core.photo.photopicker.PhotoPickerActivity"
+            android:configChanges="screenSize|orientation"/>
+        <activity
+            android:theme="@style/imagepicker_ImagePickerTheme"
+            android:name="com.chinavisionary.core.photo.photopicker.PhotoPagerActivity"
+            android:configChanges="screenSize|orientation"/>
+        <activity
+            android:theme="@style/__Picker.Camera.Theme"
+            android:name="com.chinavisionary.core.photo.photopicker.camera.CameraActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:theme="@style/__Picker.Camera.Theme"
+            android:name="com.chinavisionary.core.scan.view.ScanCodeActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:name="com.lzy.ninegrid.preview.ImagePreviewActivity"
+            android:launchMode="singleTask"/>
+        <activity
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:name="com.bun.miitmdid.utilsforrequestpermission.PermissionTransparentActivity"/>
+        <meta-data
+            android:name="com.huawei.hms.client.service.name:ads-identifier"
+            android:value="ads-identifier:3.4.62.300"/>
+        <activity
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
+            android:name="com.wildma.idcardcamera.camera.CameraActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden"/>
+        <service
+            android:name="es.voghdev.pdfviewpager.library.service.CopyAssetService"
+            android:exported="false"/>
+        <service
+            android:name="org.android.agoo.accs.AgooService"
+            android:exported="false"
+            android:process="@string/aliyun_accs_target_process">
+            <intent-filter>
+                <action android:name="com.taobao.accs.intent.action.RECEIVE"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.aliyun.ams.emas.push.AgooInnerService"
+            android:exported="false"
+            android:process="@string/aliyun_accs_target_process">
+            <intent-filter>
+                <action android:name="org.agoo.android.intent.action.RECEIVE"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.aliyun.ams.emas.push.MsgService"
+            android:exported="false"
+            android:process="@string/aliyun_accs_target_process">
+            <intent-filter>
+                <action android:name="com.alibaba.sdk.android.push.NOTIFY_ACTION"/>
+            </intent-filter>
+        </service>
+        <activity
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:name="com.aliyun.ams.emas.push.NotificationActivity"
+            android:exported="false"
+            android:process="@string/aliyun_accs_target_process"
+            android:launchMode="singleInstance"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="com.alibaba.sdk.android.push.NOTIFY_ACTION"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.lzy.imagepicker.ui.ImageBaseActivity"/>
+        <activity
+            android:theme="@style/ImagePickerTheme"
+            android:name="com.lzy.imagepicker.ui.ImageGridActivity"
+            android:configChanges="screenSize|orientation"/>
+        <activity
+            android:theme="@style/ImagePickerTheme"
+            android:name="com.lzy.imagepicker.ui.ImageCropActivity"
+            android:configChanges="screenSize|orientation"
+            android:hardwareAccelerated="false"/>
+        <activity
+            android:theme="@style/ImagePickerTheme"
+            android:name="com.lzy.imagepicker.ui.ImagePreviewActivity"
+            android:configChanges="screenSize|orientation"/>
+        <activity
+            android:theme="@style/ImagePickerTheme"
+            android:name="com.lzy.imagepicker.ui.ImagePreviewDelActivity"
+            android:configChanges="screenSize|orientation"/>
+        <provider
+            android:name="com.lzy.imagepicker.ImagePickerProvider"
+            android:exported="false"
+            android:authorities="com.chinavisionary.microtang.provider"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
+        <provider
+            android:name="me.jessyan.autosize.InitProvider"
+            android:exported="false"
+            android:multiprocess="true"
+            android:authorities="com.chinavisionary.microtang.autosize-init-provider"/>
+        <provider
+            android:name="com.bytedance.sdk.openadsdk.TTFileProvider"
+            android:exported="false"
+            android:authorities="com.chinavisionary.microtang.TTFileProvider"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/adsuyi_toutiao_file_paths"/>
+        </provider>
+        <provider
+            android:name="com.bytedance.sdk.openadsdk.multipro.TTMultiProvider"
+            android:exported="false"
+            android:authorities="com.chinavisionary.microtang.TTMultiProvider"/>
+        <provider
+            android:name="com.qq.e.comm.GDTFileProvider"
+            android:exported="false"
+            android:authorities="com.chinavisionary.microtang.gdt.fileprovider"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/gdt_file_path"/>
+        </provider>
+        <activity
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            android:name="cn.admobiletop.adsuyi.adapter.gdt.widget.DownloadApkConfirmDialogActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden|keyboard"/>
+        <activity
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:name="com.alipay.sdk.app.PayResultActivity"
+            android:exported="true"
+            android:launchMode="singleInstance"
+            android:configChanges="fontScale|layoutDirection|density|smallestScreenSize|screenSize|screenLayout|orientation|navigation|keyboardHidden|keyboard|locale"/>
+        <activity
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:name="com.alipay.sdk.app.AlipayResultActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:configChanges="fontScale|layoutDirection|density|smallestScreenSize|screenSize|screenLayout|orientation|navigation|keyboardHidden|keyboard|locale"/>
+        <activity
+            android:name="com.alipay.sdk.app.H5OpenAuthActivity"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:configChanges="fontScale|layoutDirection|density|smallestScreenSize|screenSize|screenLayout|orientation|navigation|keyboardHidden|keyboard|locale"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:name="com.alipay.sdk.app.APayEntranceActivity"
+            android:exported="false"
+            android:configChanges="fontScale|layoutDirection|density|smallestScreenSize|screenSize|screenLayout|orientation|navigation|keyboardHidden|keyboard|locale"/>
+        <provider
+            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
+            android:exported="false"
+            android:multiprocess="true"
+            android:authorities="com.chinavisionary.microtang.lifecycle-process"/>
+        <service
+            android:name="com.taobao.accs.ChannelService"
+            android:enabled="false"
+            android:exported="false"
+            android:process="@string/aliyun_accs_channel_process">
+            <intent-filter>
+                <action android:name="com.taobao.accs.intent.action.SERVICE"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.taobao.accs.ChannelService.KernelService"
+            android:enabled="false"
+            android:exported="false"
+            android:process="@string/aliyun_accs_channel_process"/>
+        <service
+            android:name="com.taobao.accs.internal.AccsJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:enabled="false"
+            android:exported="false"
+            android:process="@string/aliyun_accs_channel_process"/>
+        <service
+            android:name="com.taobao.accs.data.MsgDistributeService"
+            android:exported="false"
+            android:process="@string/aliyun_accs_target_process">
+            <intent-filter>
+                <action android:name="com.taobao.accs.intent.action.RECEIVE"/>
+            </intent-filter>
+        </service>
+        <receiver
+            android:name="com.taobao.accs.ServiceReceiver"
+            android:enabled="false"
+            android:exported="false"
+            android:process="@string/aliyun_accs_channel_process">
+            <intent-filter>
+                <action android:name="com.taobao.accs.intent.action.COMMAND"/>
+            </intent-filter>
+        </receiver>
+        <activity
+            android:theme="@style/tianmu_ad_detail_activity"
+            android:name="com.tianmu.ad.activity.AdDetailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:theme="@style/tianmu_translucent_activity"
+            android:name="com.tianmu.ad.activity.AdDownloadDetailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:theme="@style/tianmu_ad_detail_activity"
+            android:name="com.tianmu.ad.activity.LandscapeAdDetailActivity"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape"/>
+        <activity
+            android:theme="@style/tianmu_translucent_activity"
+            android:name="com.tianmu.ad.activity.LandscapeAdDownloadDetailActivity"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape"/>
+        <activity
+            android:name="com.tianmu.ad.activity.AppPermissionsActivity"
+            android:exported="false"/>
+        <activity
+            android:name="com.tianmu.ad.activity.WebViewActivity"
+            android:exported="false"/>
+        <activity
+            android:theme="@style/tianmu_video_no_status"
+            android:name="com.tianmu.ad.activity.RewardVodActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:theme="@style/tianmu_video_no_status"
+            android:name="com.tianmu.ad.activity.FullScreenVodActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:theme="@style/tianmu_video_no_status"
+            android:name="com.tianmu.ad.activity.LandscapeFullScreenVodActivity"
+            android:exported="false"
+            android:screenOrientation="landscape"/>
+        <activity
+            android:theme="@style/tianmu_interstitial_activity"
+            android:name="com.tianmu.ad.activity.InterstitialActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:configChanges="screenSize|orientation|keyboardHidden|keyboard"/>
+        <activity
+            android:theme="@style/tianmu_interstitial_activity"
+            android:name="com.tianmu.ad.activity.LandscapeInterstitialActivity"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="screenSize|orientation|keyboardHidden|keyboard"/>
+        <activity
+            android:name="com.tianmu.ad.activity.DownloadListActivity"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+        <provider
+            android:name="com.tianmu.provider.TianmuAdFileProvider"
+            android:exported="false"
+            android:authorities="com.chinavisionary.microtang.tianmu.fileprovider"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/tianmu_file_paths"/>
+        </provider>
+        <service
+            android:name="com.tianmu.biz.download.service.DownloadNoticeService"
+            android:exported="false"/>
+        <meta-data
+            android:name="ZEUS_PLUGIN_PANGLE"
+            android:value="{                 apiVersionCode:5908,                 packageName:com.byted.pangle.m,                 minPluginVersion:5908,                 internalPath:2131114887,                 internalVersionCode:5908             }"/>
+        <meta-data
+            android:name="ZEUS_PLUGIN_com.byted.csj.ext"
+            android:value="{apiVersionCode:999,packageName:com.byted.csj.ext,minPluginVersion:1000,maxPluginVersion:999999999,internalPath:&apos;&apos;,internalVersionCode:-1, appKey:&apos;&apos;,appSecretKey:&apos;&apos;}"/>
+        <activity
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:name="com.bytedance.sdk.openadsdk.stub.activity.Stub_Standard_Activity"
+            android:exported="false"
+            android:launchMode="standard"
+            android:configChanges="screenSize|orientation|navigation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:name="com.bytedance.sdk.openadsdk.stub.activity.Stub_Standard_Portrait_Activity"
+            android:exported="false"
+            android:launchMode="standard"
+            android:screenOrientation="portrait"
+            android:configChanges="screenSize|uiMode|orientation|navigation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:theme="@android:style/Theme.Translucent"
+            android:name="com.bytedance.sdk.openadsdk.stub.activity.Stub_Standard_Activity_T"
+            android:exported="false"
+            android:launchMode="standard"
+            android:configChanges="screenSize|orientation|navigation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:name="com.bytedance.sdk.openadsdk.stub.activity.Stub_Standard_Landscape_Activity"
+            android:exported="false"
+            android:launchMode="standard"
+            android:screenOrientation="landscape"
+            android:configChanges="screenSize|uiMode|orientation|navigation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:name="com.bytedance.sdk.openadsdk.stub.activity.Stub_Activity"
+            android:exported="false"
+            android:configChanges="screenSize|orientation|navigation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:theme="@android:style/Theme.Translucent"
+            android:name="com.bytedance.sdk.openadsdk.stub.activity.Stub_SingleTask_Activity_T"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:configChanges="screenSize|orientation|navigation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name="com.bytedance.sdk.openadsdk.stub.activity.Stub_SingleTask_Activity"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:configChanges="screenSize|orientation|navigation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <provider
+            android:name="com.bytedance.sdk.openadsdk.stub.server.DownloaderServerManager"
+            android:exported="false"
+            android:process=":downloader"
+            android:authorities="com.chinavisionary.microtang.pangle.servermanager.downloader.com.bytedance.sdk.openadsdk.adhost"/>
+        <provider
+            android:name="com.bytedance.sdk.openadsdk.stub.server.MainServerManager"
+            android:exported="false"
+            android:authorities="com.chinavisionary.microtang.pangle.servermanager.main"/>
+        <provider
+            android:name="com.bytedance.pangle.provider.MainProcessProviderProxy"
+            android:exported="false"
+            android:authorities="com.chinavisionary.microtang.pangle.provider.proxy.main"/>
+        <provider
+            android:name="com.bytedance.pangle.FileProvider"
+            android:exported="false"
+            android:authorities="com.chinavisionary.microtang.pangle.fileprovider"
+            android:grantUriPermissions="true"/>
+        <activity
+            android:name="com.ss.android.downloadlib.addownload.compliance.AppPrivacyPolicyActivity"
+            android:exported="false"/>
+        <activity
+            android:name="com.ss.android.downloadlib.addownload.compliance.AppDetailInfoActivity"
+            android:exported="false"/>
+        <activity
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:name="com.ss.android.downloadlib.activity.TTDelegateActivity"
+            android:exported="false"
+            android:launchMode="singleTask"/>
+        <activity
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:name="com.ss.android.downloadlib.activity.JumpKllkActivity"
+            android:exported="false"
+            android:launchMode="singleTask"/>
+        <receiver
+            android:name="com.ss.android.downloadlib.core.download.DownloadReceiver"
+            android:exported="false"/>
+        <service
+            android:name="com.ss.android.socialbase.appdownloader.DownloadHandlerService"
+            android:exported="false"
+            android:stopWithTask="true"/>
+        <activity
+            android:theme="@android:style/Theme.Dialog"
+            android:name="com.ss.android.socialbase.appdownloader.view.DownloadTaskDeleteActivity"
+            android:exported="false"
+            android:launchMode="singleTask"/>
+        <activity
+            android:theme="@android:style/Theme.Dialog"
+            android:name="com.ss.android.socialbase.appdownloader.view.JumpUnknownSourceActivity"
+            android:exported="false"
+            android:launchMode="singleTask"/>
+        <service
+            android:name="com.ss.android.socialbase.appdownloader.RetryJobSchedulerService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:enabled="true"
+            android:exported="false"
+            android:stopWithTask="true"/>
+        <service
+            android:name="com.ss.android.socialbase.downloader.downloader.IndependentProcessDownloadService"
+            android:exported="false"
+            android:process=":downloader">
+            <intent-filter>
+                <action android:name="com.ss.android.socialbase.downloader.remote"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.ss.android.socialbase.downloader.notification.DownloadNotificationService"
+            android:exported="false"
+            android:stopWithTask="true"/>
+        <service
+            android:name="com.ss.android.socialbase.downloader.downloader.DownloadService"
+            android:exported="false"
+            android:stopWithTask="true"/>
+        <service
+            android:name="com.ss.android.socialbase.downloader.impls.DownloadHandleService"
+            android:exported="false"
+            android:stopWithTask="true"/>
+        <service
+            android:name="com.ss.android.socialbase.downloader.downloader.SqlDownloadCacheService"
+            android:exported="false"
+            android:stopWithTask="true"/>
+        <meta-data
+            android:name="ZEUS_PLUGIN_LIVE"
+            android:value="{                 apiVersionCode:2114,                 packageName:com.byted.live.lite,                 minPluginVersion:211400,                 maxPluginVersion:999999,                 isSupportLibIsolate:true             }"/>
+        <meta-data
+            android:name="LIVE_API_VERSION_CODE"
+            android:value="2114"/>
+        <activity
+            android:name="com.bytedance.android.openliveplugin.stub.activity.DouyinAuthorizeActivityProxy"
+            android:exported="true"/>
+        <activity
+            android:name="com.bytedance.android.openliveplugin.stub.activity.DouyinAuthorizeActivityLiveProcessProxy"
+            android:exported="true"
+            android:process=":bytelive"/>
+        <provider
+            android:name="com.bytedance.android.openliveplugin.process.server.LiveServerManager"
+            android:exported="false"
+            android:process=":bytelive"
+            android:authorities="com.chinavisionary.microtang.bytedance.android.openliveplugin.process.server.LiveServerManager"/>
+        <activity
+            android:name="com.byted.live.lite.Activity_bytelive_standard"
+            android:exported="false"
+            android:process=":bytelive"
+            android:launchMode="standard"
+            android:configChanges="screenSize|orientation|navigation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name="com.byted.live.lite.Activity_bytelive_singleTask4"
+            android:exported="false"
+            android:process=":bytelive"
+            android:launchMode="singleTask"
+            android:configChanges="screenSize|orientation|navigation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name="com.byted.live.lite.Activity_bytelive_singleTop3"
+            android:exported="false"
+            android:process=":bytelive"
+            android:launchMode="singleTop"
+            android:configChanges="screenSize|orientation|navigation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name="com.byted.live.lite.Activity_bytelive_singleTop2"
+            android:exported="false"
+            android:process=":bytelive"
+            android:launchMode="singleTop"
+            android:configChanges="screenSize|orientation|navigation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name="com.byted.live.lite.Activity_bytelive_singleTop5"
+            android:exported="false"
+            android:process=":bytelive"
+            android:launchMode="singleTop"
+            android:configChanges="screenSize|orientation|navigation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name="com.byted.live.lite.Activity_main_standard"
+            android:exported="false"
+            android:launchMode="standard"
+            android:configChanges="screenSize|orientation|navigation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name="com.byted.live.lite.Activity_bytelive_singleTop4"
+            android:exported="false"
+            android:process=":bytelive"
+            android:launchMode="singleTop"
+            android:configChanges="screenSize|orientation|navigation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name="com.byted.live.lite.Activity_bytelive_standard"
+            android:exported="false"
+            android:process=":bytelive"
+            android:launchMode="standard"
+            android:configChanges="screenSize|orientation|navigation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name="com.byted.live.lite.Activity_bytelive_singleTop1"
+            android:exported="false"
+            android:process=":bytelive"
+            android:launchMode="singleTop"
+            android:configChanges="screenSize|orientation|navigation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name="com.byted.live.lite.Activity_bytelive_singleTask1"
+            android:exported="false"
+            android:process=":bytelive"
+            android:launchMode="singleTask"
+            android:configChanges="screenSize|orientation|navigation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name="com.byted.live.lite.Activity_bytelive_singleTop6"
+            android:exported="false"
+            android:process=":bytelive"
+            android:launchMode="singleTop"
+            android:configChanges="screenSize|orientation|navigation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name="com.byted.live.lite.Activity_bytelive_singleTask2"
+            android:exported="false"
+            android:process=":bytelive"
+            android:launchMode="singleTask"
+            android:configChanges="screenSize|orientation|navigation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name="com.byted.live.lite.Activity_bytelive_singleTask3"
+            android:exported="false"
+            android:process=":bytelive"
+            android:launchMode="singleTask"
+            android:configChanges="screenSize|orientation|navigation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name="com.byted.live.lite.Activity_main_singleTask1"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:configChanges="screenSize|orientation|navigation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name="com.byted.live.lite.Activity_main_singleTask2"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:configChanges="screenSize|orientation|navigation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name="com.byted.live.lite.Activity_main_singleTask3"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:configChanges="screenSize|orientation|navigation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name="com.byted.live.lite.Activity_main_singleTask4"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:configChanges="screenSize|orientation|navigation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name="com.byted.live.lite.Activity_main_standard"
+            android:exported="false"
+            android:launchMode="standard"
+            android:configChanges="screenSize|orientation|navigation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name="com.byted.live.lite.Activity_main_singleTop1"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:configChanges="screenSize|orientation|navigation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name="com.byted.live.lite.Activity_main_singleTop2"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:configChanges="screenSize|orientation|navigation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name="com.byted.live.lite.Activity_main_singleInstance1"
+            android:exported="false"
+            android:launchMode="singleInstance"
+            android:configChanges="screenSize|orientation|navigation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name="com.byted.live.lite.Activity_main_singleTop5"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:configChanges="screenSize|orientation|navigation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name="com.byted.live.lite.Activity_main_singleTop6"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:configChanges="screenSize|orientation|navigation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name="com.byted.live.lite.Activity_main_singleTop3"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:configChanges="screenSize|orientation|navigation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name="com.byted.live.lite.Activity_main_singleTop4"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:configChanges="screenSize|orientation|navigation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name="com.byted.live.lite.Activity_bytelive_singleInstance1"
+            android:exported="false"
+            android:process=":bytelive"
+            android:launchMode="singleInstance"
+            android:configChanges="screenSize|orientation|navigation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <provider
+            android:name="com.byted.live.lite.ServerManager_bytelive"
+            android:exported="false"
+            android:process=":bytelive"
+            android:authorities="com.chinavisionary.microtang.pangle.servermanager.bytelive.com.byted.live.lite"/>
+        <provider
+            android:name="com.byted.live.lite.ServerManager_push"
+            android:exported="false"
+            android:process=":push"
+            android:authorities="com.chinavisionary.microtang.pangle.servermanager.push.com.byted.live.lite"/>
+        <service
+            android:name="com.qq.e.comm.DownloadService"
+            android:exported="false"
+            android:multiprocess="true"/>
+        <activity
+            android:name="com.qq.e.ads.ADActivity"
+            android:multiprocess="true"
+            android:configChanges="screenSize|orientation|keyboardHidden|keyboard"/>
+        <activity
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:name="com.qq.e.ads.PortraitADActivity"
+            android:multiprocess="true"
+            android:screenOrientation="portrait"
+            android:configChanges="screenSize|orientation|keyboardHidden|keyboard"/>
+        <activity
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:name="com.qq.e.ads.LandscapeADActivity"
+            android:multiprocess="true"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="screenSize|orientation|keyboardHidden|keyboard"/>
+        <activity
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:name="com.qq.e.ads.RewardvideoPortraitADActivity"
+            android:multiprocess="true"
+            android:configChanges="screenSize|orientation|keyboardHidden|keyboard">
+            <meta-data
+                android:name="android.notch_support"
+                android:value="true"/>
+        </activity>
+        <activity
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:name="com.qq.e.ads.RewardvideoLandscapeADActivity"
+            android:multiprocess="true"
+            android:screenOrientation="landscape"
+            android:configChanges="screenSize|orientation|keyboardHidden|keyboard">
+            <meta-data
+                android:name="android.notch_support"
+                android:value="true"/>
+        </activity>
+        <activity
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            android:name="com.qq.e.ads.DialogActivity"
+            android:multiprocess="true"/>
+    </application>
+</manifest>

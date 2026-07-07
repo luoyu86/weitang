@@ -1,0 +1,23 @@
+# APK 文件
+*.apk
+
+# 平台工具和大文件
+platform-tools/
+platform-tools.zip
+frida-server-*
+
+# 临时文件和缓存
+__pycache__/
+*.pyc
+.workbuddy/
+.kotlinc_check/
+
+# 签名文件（敏感）
+*.keystore
+
+# 编译输出
+apktool_output/
+
+# 日志和临时文件
+*.log
+temp_*

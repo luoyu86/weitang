@@ -1,0 +1,9 @@
+package org.apache.commons.codec.language.bm;
+
+/* JADX INFO: loaded from: classes2.dex */
+public class ResourceConstants {
+    public static final String CMT = "//";
+    public static final String ENCODING = "UTF-8";
+    public static final String EXT_CMT_END = "*/";
+    public static final String EXT_CMT_START = "/*";
+}

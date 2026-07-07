@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:background="@drawable/tianmu_shape_sway_perfect_circle_bg"
+            android:layout_width="90dp"
+            android:layout_height="90dp"/>
+        <ImageView
+            android:id="@+id/tianmu_widget_iv_slide"
+            android:paddingTop="15dp"
+            android:paddingBottom="20dp"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:src="@drawable/tianmu_splash_bottom_arc_slide_icon"/>
+    </RelativeLayout>
+    <include layout="@layout/tianmu_include_interaction_tips_view"/>
+</LinearLayout>

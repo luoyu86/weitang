@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/title_layout"/>
+    <TextView
+        android:textSize="@dimen/sp_20"
+        android:textColor="@color/color000000"
+        android:gravity="center"
+        android:background="@color/color_bg"
+        android:padding="@dimen/dp_12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="申请注销微棠账号"
+        android:drawableTop="@mipmap/ic_logout_account"
+        android:drawablePadding="@dimen/dp_8"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_back"
+        style="@style/TitleTvStyle"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

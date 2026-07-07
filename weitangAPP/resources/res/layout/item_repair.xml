@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/color_white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <com.chinavisionary.core.weight.CoreRoundedImageView
+        android:id="@+id/img_product_cover"
+        android:background="@drawable/bg_repair_img"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_76"
+        android:src="@mipmap/ic_launcher"
+        android:scaleType="centerCrop"/>
+    <TextView
+        android:textSize="@dimen/sp_14"
+        android:textColor="@color/colore757575"
+        android:gravity="center"
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"/>
+</LinearLayout>

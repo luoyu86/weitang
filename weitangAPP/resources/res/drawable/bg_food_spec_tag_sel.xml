@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle"
+    android:useLevel="true">
+    <corners android:radius="@dimen/dp_4"/>
+    <solid android:color="@color/colorfae6c4"/>
+    <stroke
+        android:width="@dimen/dp_1"
+        android:color="@color/tab_item_select_color"/>
+    <padding
+        android:left="@dimen/dp_15"
+        android:top="@dimen/dp_5"
+        android:right="@dimen/dp_15"
+        android:bottom="@dimen/dp_5"/>
+</shape>

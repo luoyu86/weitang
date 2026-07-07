@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/title_layout"/>
+    <com.chinavisionary.microtang.sign.view.BaseWebView
+        android:id="@+id/web_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dp_68"
+        android:layout_marginBottom="@dimen/dp_46"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/llayout_bottom"
+        android:background="@color/color_white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_46"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <CheckBox
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/color383838"
+            android:gravity="center"
+            android:id="@+id/cb_agree"
+            android:background="@null"
+            android:paddingLeft="@dimen/dp_5"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp_12"
+            android:checked="false"
+            android:button="@drawable/bg_cb"
+            android:text="@string/title_agree"/>
+        <TextView
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/tab_item_select_color"
+            android:gravity="center"
+            android:id="@+id/tv_protocol_title"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="@dimen/dp_125"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            style="@style/BtnNextStyle"/>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

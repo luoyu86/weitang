@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_40"
+    android:layout_marginLeft="@dimen/dp_12"
+    android:layout_marginRight="@dimen/dp_12">
+    <TextView
+        android:textSize="@dimen/sp_14"
+        android:textColor="#909090"
+        android:gravity="center"
+        android:background="@drawable/bg_end_activity_radius_4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/title_end_activity"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

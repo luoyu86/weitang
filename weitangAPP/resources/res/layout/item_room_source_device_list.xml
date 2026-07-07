@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingLeft="@dimen/dp_10"
+    android:paddingTop="@dimen/dp_20"
+    android:paddingRight="@dimen/dp_10"
+    android:paddingBottom="@dimen/dp_20"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <com.chinavisionary.core.weight.CoreRoundedImageView
+        android:id="@+id/img_device"
+        android:layout_width="@dimen/dp_22"
+        android:layout_height="@dimen/dp_22"
+        android:src="@drawable/ic_default"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:gravity="center"
+        android:id="@+id/tv_device_name"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/img_device"
+        style="@style/TvStyle"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

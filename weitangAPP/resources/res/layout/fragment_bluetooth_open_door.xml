@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/img_ble_open_door_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/bg_ble_open_door"
+        android:scaleType="centerCrop"/>
+    <TextView
+        android:textSize="@dimen/sp_18"
+        android:textColor="@color/color_white"
+        android:gravity="center"
+        android:id="@+id/tv_open_door_name"
+        android:background="@color/clean_base_transparent"
+        android:paddingTop="@dimen/dp_24"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_top_title_height"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/TvStyle"/>
+    <include layout="@layout/dialog_loading"/>
+    <TextView
+        android:textSize="@dimen/sp_14"
+        android:textColor="@color/colorF0F0F0"
+        android:id="@+id/tv_timer_msg"
+        android:paddingTop="@dimen/dp_6"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_130"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <Button
+        android:id="@+id/btn_retry_open"
+        android:visibility="gone"
+        android:layout_width="@dimen/dp_220"
+        android:layout_height="@dimen/dp_42"
+        android:layout_marginBottom="@dimen/dp_40"
+        android:text="@string/title_retry_open_unluck"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        style="@style/SubmitBtnStyle"/>
+    <TextView
+        android:textSize="@dimen/sp_14"
+        android:textColor="@color/color000000"
+        android:gravity="center"
+        android:id="@+id/tv_lock_mac_info"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top_title_height"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <include layout="@layout/title_layout"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

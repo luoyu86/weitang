@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/llayout_item_room"
+    android:paddingLeft="@dimen/dp_4"
+    android:paddingTop="@dimen/dp_10"
+    android:paddingRight="@dimen/dp_4"
+    android:paddingBottom="@dimen/dp_10"
+    android:layout_width="@dimen/dp_112"
+    android:layout_height="match_parent">
+    <com.chinavisionary.core.weight.CoreRoundedImageView
+        android:id="@+id/img_cover"
+        android:layout_width="@dimen/dp_104"
+        android:layout_height="@dimen/dp_70"
+        android:src="@mipmap/ic_launcher"
+        android:scaleType="centerCrop"
+        app:riv_corner_radius="@dimen/dp_6"/>
+    <TextView
+        android:id="@+id/tv_title"
+        android:paddingLeft="@dimen/dp_4"
+        android:paddingRight="@dimen/dp_4"
+        android:layout_marginTop="@dimen/dp_6"
+        style="@style/TvStyle"/>
+    <TextView
+        android:textColor="@color/colore757575"
+        android:id="@+id/tv_subtitle"
+        android:paddingLeft="@dimen/dp_4"
+        android:paddingRight="@dimen/dp_4"
+        android:layout_marginTop="@dimen/dp_6"
+        style="@style/TvStyle"/>
+    <TextView
+        android:textColor="@color/item_room_tv_price_color"
+        android:id="@+id/tv_other_content"
+        android:paddingLeft="@dimen/dp_4"
+        android:paddingRight="@dimen/dp_4"
+        android:layout_marginTop="@dimen/dp_6"
+        style="@style/TvStyle"/>
+</LinearLayout>

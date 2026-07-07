@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/title_layout"/>
+    <com.chinavisionary.core.weight.BaseRecyclerView
+        android:id="@+id/recycler_pre_look_record"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style="@style/BaseRecyclerStyle"/>
+    <TextView
+        android:id="@+id/tv_rent_change_info"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:text="@string/title_cat_rent_change_info"
+        android:drawableRight="@mipmap/ic_go_auth_right_arrow"
+        android:drawablePadding="@dimen/dp_8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        style="@style/TvStyle"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

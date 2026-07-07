@@ -1,0 +1,21 @@
+{
+  "lock_info": {
+    "bluetoothMac": "1E:98:6C:02:A7:77",
+    "lockAddress": "逸秀新村-逸秀新村-D2栋-1单元-8-807",
+    "adapterModel": "GUODN_ROUTE"
+  },
+  "normal_mode": {
+    "BluetoothDataSecret": "DBCCB54D6E2E655958FF9E29CBF8A764",
+    "UnixTimestamp": 1783390523,
+    "BluetoothUserKey": "0F80D3A7AF16E51B5BAA1A829A144B04C9878901EB6377ACB525214E3820E0D2"
+  },
+  "super_mode": {
+    "SuperUserKey": "F8305A6E9EB9CC39295F2F6C22A4758ABDACED40E93283E4CB9A500E31D3C2B9",
+    "SuperDataSecret": "DBCCB54D6E2E655958FF9E29CBF8A764"
+  },
+  "bluetooth_uuids": {
+    "service": "000018f0-0000-1000-8000-00805f9b34fb",
+    "write": "00002af1-0000-1000-8000-00805f9b34fb",
+    "notify": "00002af0-0000-1000-8000-00805f9b34fb"
+  }
+}

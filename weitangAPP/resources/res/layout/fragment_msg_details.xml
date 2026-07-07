@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <View
+        android:background="@color/color_white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_top_title_height"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <include layout="@layout/title_layout"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/llayout_msg_content"
+        android:background="@drawable/bg_msg"
+        android:paddingLeft="@dimen/dp_14"
+        android:paddingRight="@dimen/dp_14"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_14"
+        android:layout_marginRight="@dimen/dp_20"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_split_line">
+        <TextView
+            android:textSize="@dimen/sp_15"
+            android:textColor="@color/color383838"
+            android:gravity="bottom"
+            android:id="@+id/tv_msg_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_30"
+            android:includeFontPadding="false"/>
+        <TextView
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/color686868"
+            android:textColorLink="@color/tab_item_select_color"
+            android:autoLink="phone"
+            android:id="@+id/tv_msg_content"
+            android:paddingBottom="@dimen/dp_6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            android:includeFontPadding="false"/>
+        <com.chinavisionary.core.weight.CoreRoundedImageView
+            android:id="@+id/img_msg_cover"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_200"
+            android:layout_marginBottom="@dimen/dp_14"
+            android:scaleType="centerCrop"/>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
