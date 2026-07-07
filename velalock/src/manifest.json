@@ -1,0 +1,26 @@
+{
+  "package": "com.chinavisionary.weitanglock",
+  "name": "微棠门锁",
+  "icon": "/common/icon.png",
+  "versionName": "1.0.0",
+  "versionCode": 1,
+  "minPlatformVersion": 1000,
+  "features": [
+    { "name": "system.bluetooth.ble" }
+  ],
+  "permissions": [],
+  "deviceTypeList": ["watch"],
+  "router": {
+    "entry": "index",
+    "pages": {
+      "index": { "component": "index" }
+    }
+  },
+  "config": {
+    "logLevel": "debug",
+    "designWidth": 480
+  },
+  "display": {
+    "backgroundColor": "#0b0b0b"
+  }
+}

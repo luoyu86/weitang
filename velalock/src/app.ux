@@ -1,0 +1,9 @@
+// app.ux — 应用级生命周期（全局）
+export default {
+  onCreate() {
+    console.log('weitanglock app onCreate')
+  },
+  onDestroy() {
+    console.log('weitanglock app onDestroy')
+  }
+}

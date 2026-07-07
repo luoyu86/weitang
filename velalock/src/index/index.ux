@@ -1,0 +1,150 @@
+<template>
+  <div class="page">
+    <text class="title">微棠门锁</text>
+    <text class="subtitle">MAC {{ mac }}</text>
+
+    <input class="btn btn-probe" type="button" value="探测 BLE" onclick="probe" />
+    <input class="btn btn-open" type="button" value="开锁" onclick="openLock" />
+    <input class="btn btn-close" type="button" value="关锁" onclick="closeLock" />
+
+    <text class="status">{{ status }}</text>
+    <list class="log">
+      <block for="(i, line) in logs">
+        <text class="logline">{{ line }}</text>
+      </block>
+    </list>
+  </div>
+</template>
+
+<style>
+  .page {
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+    background-color: #0b0b0b;
+  }
+  .title {
+    font-size: 40px;
+    color: #ffffff;
+    margin-top: 12px;
+    font-weight: bold;
+  }
+  .subtitle {
+    font-size: 22px;
+    color: #8a8a8a;
+    margin-top: 6px;
+    margin-bottom: 24px;
+  }
+  .btn {
+    width: 360px;
+    height: 88px;
+    border-radius: 44px;
+    color: #ffffff;
+    font-size: 32px;
+    margin-bottom: 18px;
+    text-align: center;
+  }
+  .btn-probe { background-color: #555555; }
+  .btn-open { background-color: #0a84ff; }
+  .btn-close { background-color: #ff9f0a; }
+  .status {
+    font-size: 26px;
+    color: #ffd60a;
+    margin: 12px 0;
+    text-align: center;
+  }
+  .log {
+    width: 420px;
+    height: 280px;
+    margin-top: 8px;
+    border-color: #333333;
+    border-width: 1px;
+    padding: 8px;
+  }
+  .logline {
+    font-size: 18px;
+    color: #6ad36a;
+    line-height: 26px;
+  }
+</style>
+
+<script>
+  import { LockClient } from '../common/ble.js'
+  import * as P from '../common/protocol.js'
+
+  const LOCK_MAC = '1E:98:6C:02:A7:77'
+  const DATA_SECRET = P.hexToBytes('DBCCB54D6E2E655958FF9E29CBF8A764')
+  const USER_KEY = P.hexToBytes('0F80D3A7AF16E51B5BAA1A829A144B04C9878901EB6377ACB525214E3820E0D2')
+
+  export default {
+    private: {
+      mac: LOCK_MAC,
+      status: '点击「探测 BLE」检查本设备是否支持',
+      logs: []
+    },
+    onInit() {
+      this.client = new LockClient({
+        mac: LOCK_MAC,
+        dataSecret: DATA_SECRET,
+        userKey: USER_KEY,
+        autoLock: true,
+        log: (m) => this.appendLog(m)
+      })
+    },
+    appendLog(line) {
+      this.logs = (this.logs || []).concat([line])
+      if (this.logs.length > 50) this.logs = this.logs.slice(-50)
+    },
+    setStatus(s) {
+      this.status = s
+    },
+    probe() {
+      const self = this
+      self.setStatus('探测中…')
+      self.appendLog('== 探测 @system.bluetooth.ble ==')
+      try {
+        if (LockClient.isBleSupported()) {
+          self.setStatus('✅ 本设备支持 JS BLE API（可尝试真机开锁）')
+          self.appendLog('createGattClientDevice 方法存在')
+        } else {
+          self.setStatus('❌ 本设备不支持 JS BLE（S4/澎湃OS3 大概率需原生 C）')
+          self.appendLog('createGattClientDevice 不存在')
+        }
+      } catch (e) {
+        self.setStatus('❌ 探测异常: ' + (e.message || e))
+        self.appendLog('ERR ' + (e.message || e))
+      }
+    },
+    async openLock() {
+      const self = this
+      self.setStatus('开锁中…')
+      self.appendLog('>> openLock')
+      try {
+        const r = await self.client.openLock()
+        if (r.success) {
+          self.setStatus('✅ 开锁成功' + (r.autoLock ? '（已设为自动回锁）' : ''))
+          self.appendLog('<< resultCode=' + r.resultCode)
+        } else {
+          self.setStatus('⚠️ 开锁返回失败 resultCode=' + r.resultCode)
+          self.appendLog('<< resultCode=' + r.resultCode)
+        }
+      } catch (e) {
+        self.setStatus('❌ 开锁失败: ' + (e.message || e))
+        self.appendLog('ERR ' + (e.message || e))
+      }
+    },
+    async closeLock() {
+      const self = this
+      self.setStatus('关锁中…')
+      self.appendLog('>> closeLock')
+      try {
+        const r = await self.client.closeLock()
+        self.setStatus('✅ 关锁指令已发送')
+        self.appendLog('<< resultCode=' + r.resultCode)
+      } catch (e) {
+        self.setStatus('❌ 关锁失败: ' + (e.message || e))
+        self.appendLog('ERR ' + (e.message || e))
+      }
+    }
+  }
+</script>

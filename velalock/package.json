@@ -1,0 +1,8 @@
+{
+  "name": "weitang-vela-lock",
+  "version": "1.0.0",
+  "type": "module",
+  "devDependencies": {
+    "aiot-toolkit": "^2.0.5"
+  }
+}
