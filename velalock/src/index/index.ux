@@ -19,7 +19,7 @@
 <style>
   .page {
     flex-direction: column;
-    align-items: center;   
+    align-items: center;
     padding: 24px;
     background-color: #0b0b0b;
   }
@@ -69,12 +69,513 @@
 </style>
 
 <script>
-  import { LockClient } from '../common/ble.js'
-  import * as P from '../common/protocol.js'
+  // ============================================================
+  // 协议层 (与 unlock_v2.py 字节级一致, TEA big-endian / TLV / XOR)
+  // 内联到此 .ux 脚本：避免单独 .js 模块被 rspack 错误地用
+  // `exports.xxx` 互操作（该参数在本工具链不存在 → 白屏）。
+  // ============================================================
+  var DELTA = 0x9e3779b9 >>> 0;
+  var ROUNDS = 16;
+  var BLOCK = 8;
 
-  const LOCK_MAC = '1E:98:6C:02:A7:77'
-  const DATA_SECRET = P.hexToBytes('DBCCB54D6E2E655958FF9E29CBF8A764')
-  const USER_KEY = P.hexToBytes('0F80D3A7AF16E51B5BAA1A829A144B04C9878901EB6377ACB525214E3820E0D2')
+  function readIntBE(b, off) {
+    return (
+      ((b[off] & 0xff) << 24) |
+      ((b[off + 1] & 0xff) << 16) |
+      ((b[off + 2] & 0xff) << 8) |
+      (b[off + 3] & 0xff)
+    ) >>> 0;
+  }
+
+  function writeIntBE(b, off, v) {
+    b[off] = (v >>> 24) & 0xff;
+    b[off + 1] = (v >>> 16) & 0xff;
+    b[off + 2] = (v >>> 8) & 0xff;
+    b[off + 3] = v & 0xff;
+  }
+
+  function hexToBytes(hex) {
+    var s = hex.replace(/\s/g, '');
+    var out = new Uint8Array(s.length / 2);
+    for (var i = 0; i < out.length; i++) {
+      out[i] = parseInt(s.substr(i * 2, 2), 16);
+    }
+    return out;
+  }
+
+  function bytesToHex(bytes) {
+    var s = '';
+    for (var i = 0; i < bytes.length; i++) s += (bytes[i] & 0xff).toString(16).padStart(2, '0');
+    return s;
+  }
+
+  function xorOf(data) {
+    var x = 0;
+    for (var i = 0; i < data.length; i++) x ^= data[i] & 0xff;
+    return x & 0xff;
+  }
+
+  function pkcs7Pad(data, block) {
+    var rem = data.length % block;
+    var pad = rem === 0 ? block : block - rem;
+    var out = new Uint8Array(data.length + pad);
+    out.set(data, 0);
+    for (var i = data.length; i < out.length; i++) out[i] = pad;
+    return out;
+  }
+
+  function teaEncrypt(data, key) {
+    var padded = pkcs7Pad(data, BLOCK);
+    var out = new Uint8Array(padded.length);
+    var k = [readIntBE(key, 0), readIntBE(key, 4), readIntBE(key, 8), readIntBE(key, 12)];
+    var off = 0;
+    while (off + BLOCK <= padded.length) {
+      var v0 = readIntBE(padded, off) >>> 0;
+      var v1 = readIntBE(padded, off + 4) >>> 0;
+      var sum = 0;
+      for (var i = 0; i < ROUNDS; i++) {
+        sum = (sum + DELTA) >>> 0;
+        var k0 = k[0] >>> 0, k1 = k[1] >>> 0, k2 = k[2] >>> 0, k3 = k[3] >>> 0;
+        v0 = (v0 + ((((v1 << 4) >>> 0) + k0) ^ (v1 + sum) ^ ((v1 >>> 5) + k1))) >>> 0;
+        v1 = (v1 + ((((v0 << 4) >>> 0) + k2) ^ (v0 + sum) ^ ((v0 >>> 5) + k3))) >>> 0;
+      }
+      writeIntBE(out, off, v0);
+      writeIntBE(out, off + 4, v1);
+      off += BLOCK;
+    }
+    return out;
+  }
+
+  function teaDecrypt(data, key) {
+    var out = new Uint8Array(data.length);
+    var k = [readIntBE(key, 0), readIntBE(key, 4), readIntBE(key, 8), readIntBE(key, 12)];
+    var off = 0;
+    while (off + BLOCK <= data.length) {
+      var v0 = readIntBE(data, off) >>> 0;
+      var v1 = readIntBE(data, off + 4) >>> 0;
+      var sum = (DELTA * ROUNDS) >>> 0;
+      for (var i = 0; i < ROUNDS; i++) {
+        var k0 = k[0] >>> 0, k1 = k[1] >>> 0, k2 = k[2] >>> 0, k3 = k[3] >>> 0;
+        v1 = (v1 - ((((v0 << 4) >>> 0) + k2) ^ (v0 + sum) ^ ((v0 >>> 5) + k3))) >>> 0;
+        v0 = (v0 - ((((v1 << 4) >>> 0) + k0) ^ (v1 + sum) ^ ((v1 >>> 5) + k1))) >>> 0;
+        sum = (sum - DELTA) >>> 0;
+      }
+      writeIntBE(out, off, v0);
+      writeIntBE(out, off + 4, v1);
+      off += BLOCK;
+    }
+    var padLen = out[out.length - 1] & 0xff;
+    if (padLen >= 1 && padLen <= BLOCK) {
+      return out.slice(0, out.length - padLen);
+    }
+    return out;
+  }
+
+  function buildTlv(tag, value) {
+    var out = new Uint8Array(4 + value.length);
+    out[0] = (tag >>> 8) & 0xff;
+    out[1] = tag & 0xff;
+    out[2] = (value.length >>> 8) & 0xff;
+    out[3] = value.length & 0xff;
+    out.set(value, 4);
+    return out;
+  }
+
+  function parseTlv(data) {
+    var result = {};
+    var i = 0;
+    while (i + 4 <= data.length) {
+      var tag = ((data[i] & 0xff) << 8) | (data[i + 1] & 0xff);
+      var length = ((data[i + 2] & 0xff) << 8) | (data[i + 3] & 0xff);
+      if (i + 4 + length > data.length) break;
+      result[tag] = data.slice(i + 4, i + 4 + length);
+      i += 4 + length;
+    }
+    return result;
+  }
+
+  function concatBytes() {
+    var arrs = Array.prototype.slice.call(arguments);
+    var len = 0;
+    for (var a = 0; a < arrs.length; a++) len += arrs[a].length;
+    var out = new Uint8Array(len);
+    var off = 0;
+    for (var b = 0; b < arrs.length; b++) {
+      out.set(arrs[b], off);
+      off += arrs[b].length;
+    }
+    return out;
+  }
+
+  function buildFullCommand(cmdType, cmdCode, units, key) {
+    var cmdValue = concatBytes.apply(null, units.map(function (p) { return buildTlv(p[0], p[1]); }));
+    var innerTag = ((cmdType << 8) | cmdCode) >>> 0;
+    var innerTlv = buildTlv(innerTag, cmdValue);
+    var inner = concatBytes(innerTlv, Uint8Array.from([xorOf(innerTlv)]));
+    var enc = teaEncrypt(inner, key);
+    var tlv29 = buildTlv(29, enc);
+    var outerTlv = buildTlv(0x6a01, tlv29);
+    return concatBytes(outerTlv, Uint8Array.from([xorOf(outerTlv)]));
+  }
+
+  function buildGetRangeCode(key) {
+    return buildFullCommand(31, 3, [[25, Uint8Array.from([11, 11, 11, 11])]], key);
+  }
+
+  function buildOpenLock(userKey, randStr, autoLock, key) {
+    var a = Uint8Array.from([autoLock ? 1 : 0]);
+    return buildFullCommand(
+      31,
+      7,
+      [
+        [101, userKey],
+        [100, randStr],
+        [25, Uint8Array.from([3, 3, 3, 3])],
+        [66, a]
+      ],
+      key
+    );
+  }
+
+  function buildCloseLock(randStr, key) {
+    return buildFullCommand(31, 9, [[100, randStr], [25, Uint8Array.from([4, 4, 4, 4])]], key);
+  }
+
+  // 从累计通知字节中解析一个完整外层包并解密, 返回 { tlvs, consumed } 或 null
+  function tryParsePacket(buffer, key) {
+    var i = 0;
+    while (i + 5 <= buffer.length) {
+      var tag = ((buffer[i] & 0xff) << 8) | (buffer[i + 1] & 0xff);
+      var valid = tag === 0x6a01 || tag === 0x6a02 || tag === 0x6a03 || tag === 0x6a04 || tag === 0x1f02;
+      if (!valid) {
+        i++;
+        continue;
+      }
+      var length = ((buffer[i + 2] & 0xff) << 8) | (buffer[i + 3] & 0xff);
+      var end = i + 4 + length + 1;
+      if (buffer.length < end) return null;
+      var pkg = buffer.slice(i, end);
+      var x = xorOf(pkg.slice(0, pkg.length - 1));
+      if (x !== pkg[pkg.length - 1]) {
+        i++;
+        continue;
+      }
+      var payload = buffer.slice(i + 4, i + 4 + length);
+      var units = parseTlv(payload);
+      if (units[29]) {
+        var inner = teaDecrypt(units[29], key);
+        if (inner.length >= 5 && xorOf(inner.slice(0, inner.length - 1)) === inner[inner.length - 1]) {
+          var innerTlvs = parseTlv(inner.slice(4, inner.length - 1));
+          return { tlvs: innerTlvs, consumed: end };
+        }
+        return null;
+      } else if (units[100] || units[25]) {
+        return { tlvs: units, consumed: end };
+      }
+      return { tlvs: units, consumed: end };
+    }
+    return null;
+  }
+
+  var P = {
+    hexToBytes: hexToBytes,
+    bytesToHex: bytesToHex,
+    xorOf: xorOf,
+    teaEncrypt: teaEncrypt,
+    teaDecrypt: teaDecrypt,
+    buildTlv: buildTlv,
+    parseTlv: parseTlv,
+    concatBytes: concatBytes,
+    buildFullCommand: buildFullCommand,
+    buildGetRangeCode: buildGetRangeCode,
+    buildOpenLock: buildOpenLock,
+    buildCloseLock: buildCloseLock,
+    tryParsePacket: tryParsePacket
+  };
+
+  // ============================================================
+  // BLE 客户端 (基于 @system.bluetooth.ble, 封装为 Promise 状态机)
+  // 延迟获取蓝牙模块 —— 加载阶段完全不触碰蓝牙, 保证无蓝牙也能渲染界面。
+  // ============================================================
+  function getBleModule() {
+    try {
+      if (typeof require !== 'undefined') {
+        var m = require('@system.bluetooth.ble');
+        if (m) return m;
+      }
+    } catch (e) {
+      // 模块不存在或加载失败 → 降级
+    }
+    try {
+      if (typeof globalThis !== 'undefined') {
+        return globalThis['@system.bluetooth.ble'] || null;
+      }
+    } catch (e) {}
+    return null;
+  }
+
+  var SERVICE_UUID = '000018f0-0000-1000-8000-00805f9b34fb';
+  var WRITE_UUID = '00002af1-0000-1000-8000-00805f9b34fb';
+  var NOTIFY_UUID = '00002af0-0000-1000-8000-00805f9b34fb';
+  var WRITE_CHUNK = 20;
+
+  function bufToBytes(buf) {
+    if (buf instanceof ArrayBuffer) return new Uint8Array(buf);
+    if (typeof ArrayBuffer !== 'undefined' && ArrayBuffer.isView(buf)) {
+      return new Uint8Array(buf.buffer, buf.byteOffset, buf.byteLength);
+    }
+    if (Array.isArray(buf)) return Uint8Array.from(buf);
+    return new Uint8Array(0);
+  }
+
+  function bytesToArrayBuffer(bytes) {
+    var ab = new ArrayBuffer(bytes.length);
+    var u = new Uint8Array(ab);
+    u.set(bytes);
+    return ab;
+  }
+
+  function LockClient(opts) {
+    this.mac = opts.mac;
+    this.dataSecret = opts.dataSecret;
+    this.userKey = opts.userKey;
+    this.autoLock = opts.autoLock !== false;
+    this.device = null;
+    this.writeChar = null;
+    this.notifyChar = null;
+    this.recvBuf = new Uint8Array(0);
+    this.pending = [];
+    this.connected = false;
+    this.log = opts.log || function () {};
+  }
+
+  LockClient.prototype._onNotify = function (data) {
+    try {
+      var val = data && data.characteristicValue;
+      if (!val) return;
+      var chunk = bufToBytes(val);
+      if (chunk.length === 0) return;
+      this.log('RECV ' + P.bytesToHex(chunk));
+      this.recvBuf = P.concatBytes(this.recvBuf, chunk);
+      while (true) {
+        var res = P.tryParsePacket(this.recvBuf, this.dataSecret);
+        if (!res) break;
+        this.recvBuf = this.recvBuf.slice(res.consumed);
+        this._dispatch(res.tlvs);
+      }
+    } catch (e) {
+      this.log('onNotify error: ' + (e && e.message ? e.message : e));
+    }
+  };
+
+  LockClient.prototype._dispatch = function (tlvs) {
+    for (var i = 0; i < this.pending.length; i++) {
+      var p = this.pending[i];
+      if (p.match(tlvs)) {
+        this.pending.splice(i, 1);
+        p.resolve(tlvs);
+        return;
+      }
+    }
+  };
+
+  LockClient.prototype._waitPacket = function (matchFn, timeoutMs) {
+    var self = this;
+    return new Promise(function (resolve, reject) {
+      var timer = setTimeout(function () {
+        var idx = self.pending.findIndex(function (p) { return p.resolve === resolve; });
+        if (idx >= 0) self.pending.splice(idx, 1);
+        reject(new Error('等待响应超时'));
+      }, timeoutMs || 8000);
+      self.pending.push({
+        match: matchFn,
+        resolve: function (tlvs) {
+          clearTimeout(timer);
+          resolve(tlvs);
+        }
+      });
+    });
+  };
+
+  LockClient.isBleSupported = function () {
+    var ble = getBleModule();
+    return !!(ble && typeof ble.createGattClientDevice === 'function');
+  };
+
+  LockClient.prototype.connect = function () {
+    var self = this;
+    return new Promise(function (resolve, reject) {
+      var ble = getBleModule();
+      if (!ble || typeof ble.createGattClientDevice !== 'function') {
+        reject(new Error('@system.bluetooth.ble 不可用：本设备(可能 S4/澎湃OS3)未开放 JS 蓝牙，需改用 Vela 原生 C 开发'));
+        return;
+      }
+      var dev;
+      try {
+        dev = ble.createGattClientDevice(self.mac, 'PUBLIC');
+      } catch (e) {
+        reject(new Error('createGattClientDevice 失败: ' + (e.message || e)));
+        return;
+      }
+      self.device = dev;
+      dev.onBLEConnectionStateChange = function (state) {
+        self.log('conn state = ' + state);
+        if (state === 2) self.connected = true;
+        else if (state === 0 || state === 3) self.connected = false;
+      };
+      dev.onBLECharacteristicChange = function (data) { self._onNotify(data); };
+      dev.connect({
+        success: function () {
+          var started = Date.now();
+          var iv = setInterval(function () {
+            if (self.connected) {
+              clearInterval(iv);
+              resolve();
+            } else if (Date.now() - started > 8000) {
+              clearInterval(iv);
+              reject(new Error('连接超时（门锁是否在附近/已开机？）'));
+            }
+          }, 100);
+        },
+        fail: function (d, code) {
+          reject(new Error('连接失败 code=' + code));
+        }
+      });
+    });
+  };
+
+  LockClient.prototype._getServices = function () {
+    var self = this;
+    return new Promise(function (resolve, reject) {
+      self.device.getServices({
+        success: function (services) {
+          var writeChar = null, notifyChar = null;
+          for (var s = 0; s < (services || []).length; s++) {
+            var chars = services[s].characteristics || [];
+            for (var c = 0; c < chars.length; c++) {
+              var u = (chars[c].characteristicUuid || '').toLowerCase();
+              if (u === WRITE_UUID.toLowerCase()) writeChar = chars[c];
+              if (u === NOTIFY_UUID.toLowerCase()) notifyChar = chars[c];
+            }
+          }
+          if (!writeChar || !notifyChar) {
+            reject(new Error('未在锁服务中找到写/通知特征值'));
+            return;
+          }
+          self.writeChar = writeChar;
+          self.notifyChar = notifyChar;
+          resolve();
+        },
+        fail: function (d, code) {
+          reject(new Error('发现服务失败 code=' + code));
+        }
+      });
+    });
+  };
+
+  LockClient.prototype._enableNotify = function () {
+    var self = this;
+    return new Promise(function (resolve, reject) {
+      self.device.setNotifyCharacteristicChanged({
+        characteristic: self.notifyChar,
+        enable: true,
+        success: function () { resolve(); },
+        fail: function (d, code) { reject(new Error('启用通知失败 code=' + code)); }
+      });
+    });
+  };
+
+  LockClient.prototype._write = function (bytes) {
+    var self = this;
+    return new Promise(function (resolve, reject) {
+      var off = 0;
+      function writeNext() {
+        if (off >= bytes.length) { resolve(); return; }
+        var n = Math.min(WRITE_CHUNK, bytes.length - off);
+        var chunk = bytes.slice(off, off + n);
+        off += n;
+        var characteristic = {
+          serviceUuid: self.writeChar.serviceUuid,
+          characteristicUuid: WRITE_UUID,
+          characteristicValue: bytesToArrayBuffer(chunk)
+        };
+        self.log('SEND ' + P.bytesToHex(chunk));
+        self.device.writeCharacteristicValue({
+          characteristic: characteristic,
+          success: function () { setTimeout(writeNext, 20); },
+          fail: function (d, code) { reject(new Error('写特征失败 code=' + code)); }
+        });
+      }
+      writeNext();
+    });
+  };
+
+  LockClient.prototype.openLock = function () {
+    var self = this;
+    return self.connect()
+      .then(function () { return self._getServices(); })
+      .then(function () { return self._enableNotify(); })
+      .then(function () {
+        var grc = P.buildGetRangeCode(self.dataSecret);
+        var randWaiter = self._waitPacket(function (tlvs) { return !!tlvs[100]; }, 8000);
+        return self._write(grc).then(function () { return randWaiter; });
+      })
+      .then(function (r1) {
+        var randStr = r1[100];
+        var op = P.buildOpenLock(self.userKey, randStr, self.autoLock, self.dataSecret);
+        var openWaiter = self._waitPacket(function (tlvs) { return !!tlvs[1]; }, 8000);
+        return self._write(op).then(function () { return openWaiter; });
+      })
+      .then(function (r2) {
+        var rc = r2[1];
+        var ok = !!rc && rc.length >= 2 && rc[0] === 0 && rc[1] === 0;
+        return self.disconnect().then(function () {
+          return { success: ok, resultCode: P.bytesToHex(rc || new Uint8Array(0)), autoLock: self.autoLock };
+        });
+      });
+  };
+
+  LockClient.prototype.closeLock = function () {
+    var self = this;
+    return self.connect()
+      .then(function () { return self._getServices(); })
+      .then(function () { return self._enableNotify(); })
+      .then(function () {
+        var grc = P.buildGetRangeCode(self.dataSecret);
+        var randWaiter = self._waitPacket(function (tlvs) { return !!tlvs[100]; }, 8000);
+        return self._write(grc).then(function () { return randWaiter; });
+      })
+      .then(function (r1) {
+        var randStr = r1[100];
+        var cl = P.buildCloseLock(randStr, self.dataSecret);
+        var closeWaiter = self._waitPacket(function (tlvs) { return !!tlvs[1] || !!tlvs[25]; }, 8000);
+        return self._write(cl).then(function () { return closeWaiter; });
+      })
+      .then(function (r2) {
+        return self.disconnect().then(function () {
+          return { success: true, resultCode: P.bytesToHex(r2[1] || new Uint8Array(0)) };
+        });
+      });
+  };
+
+  LockClient.prototype.disconnect = function () {
+    var self = this;
+    return new Promise(function (resolve) {
+      if (!self.device) { resolve(); return; }
+      self.device.disconnect({
+        success: function () { resolve(); },
+        fail: function () { resolve(); },
+        complete: function () { resolve(); }
+      });
+    });
+  };
+
+  // ============================================================
+  // 页面逻辑
+  // ============================================================
+  var LOCK_MAC = '1E:98:6C:02:A7:77';
+  var DATA_SECRET = P.hexToBytes('DBCCB54D6E2E655958FF9E29CBF8A764');
+  var USER_KEY = P.hexToBytes('0F80D3A7AF16E51B5BAA1A829A144B04C9878901EB6377ACB525214E3820E0D2');
 
   export default {
     private: {
@@ -89,67 +590,66 @@
         userKey: USER_KEY,
         autoLock: true,
         log: (m) => this.appendLog(m)
-      })
-      // 启动即探测蓝牙能力：界面已渲染，此调用即使失败也不影响显示；
-      // 无蓝牙时状态栏会明确提示「不支持」，而不会白屏或卡住。
-      this.probe()
+      });
+      // 界面已渲染，此调用即使失败也不影响显示；无蓝牙时状态栏会明确提示。
+      this.probe();
     },
     appendLog(line) {
-      this.logs = (this.logs || []).concat([line])
-      if (this.logs.length > 50) this.logs = this.logs.slice(-50)
+      this.logs = (this.logs || []).concat([line]);
+      if (this.logs.length > 50) this.logs = this.logs.slice(-50);
     },
     setStatus(s) {
-      this.status = s
+      this.status = s;
     },
     probe() {
-      const self = this
-      self.setStatus('探测中…')
-      self.appendLog('== 探测 @system.bluetooth.ble ==')
+      var self = this;
+      self.setStatus('探测中…');
+      self.appendLog('== 探测 @system.bluetooth.ble ==');
       try {
         if (LockClient.isBleSupported()) {
-          self.setStatus('✅ 本设备支持 JS BLE API（可尝试真机开锁）')
-          self.appendLog('createGattClientDevice 方法存在')
+          self.setStatus('✅ 本设备支持 JS BLE API（可尝试真机开锁）');
+          self.appendLog('createGattClientDevice 方法存在');
         } else {
-          self.setStatus('❌ 本设备不支持 JS BLE（S4/澎湃OS3 大概率需原生 C）')
-          self.appendLog('createGattClientDevice 不存在')
+          self.setStatus('❌ 本设备不支持 JS BLE（S4/澎湃OS3 大概率需原生 C）');
+          self.appendLog('createGattClientDevice 不存在');
         }
       } catch (e) {
-        self.setStatus('❌ 探测异常: ' + (e.message || e))
-        self.appendLog('ERR ' + (e.message || e))
+        self.setStatus('❌ 探测异常: ' + (e.message || e));
+        self.appendLog('ERR ' + (e.message || e));
       }
     },
     openLock() {
-      const self = this
-      self.setStatus('开锁中…')
-      self.appendLog('>> openLock')
+      var self = this;
+      self.setStatus('开锁中…');
+      self.appendLog('>> openLock');
       self.client.openLock()
         .then(function (r) {
           if (r.success) {
-            self.setStatus('✅ 开锁成功' + (r.autoLock ? '（已设为自动回锁）' : ''))
-            self.appendLog('<< resultCode=' + r.resultCode)
+            self.setStatus('✅ 开锁成功' + (r.autoLock ? '（已设为自动回锁）' : ''));
+            self.appendLog('<< resultCode=' + r.resultCode);
           } else {
-            self.setStatus('⚠️ 开锁返回失败 resultCode=' + r.resultCode)
-            self.appendLog('<< resultCode=' + r.resultCode)
+            self.setStatus('⚠️ 开锁返回失败 resultCode=' + r.resultCode);
+            self.appendLog('<< resultCode=' + r.resultCode);
           }
         })
         .catch(function (e) {
-          self.setStatus('❌ 开锁失败: ' + (e.message || e))
-          self.appendLog('ERR ' + (e.message || e))
-        })
+          self.setStatus('❌ 开锁失败: ' + (e.message || e));
+          self.appendLog('ERR ' + (e.message || e));
+        });
     },
     closeLock() {
-      const self = this
-      self.setStatus('关锁中…')
-      self.appendLog('>> closeLock')
+      var self = this;
+      self.setStatus('关锁中…');
+      self.appendLog('>> closeLock');
       self.client.closeLock()
         .then(function (r) {
-          self.setStatus('✅ 关锁指令已发送')
-          self.appendLog('<< resultCode=' + r.resultCode)
+          self.setStatus('✅ 关锁指令已发送');
+          self.appendLog('<< resultCode=' + r.resultCode);
         })
         .catch(function (e) {
-          self.setStatus('❌ 关锁失败: ' + (e.message || e))
-          self.appendLog('ERR ' + (e.message || e))
-        })
+          self.setStatus('❌ 关锁失败: ' + (e.message || e));
+          self.appendLog('ERR ' + (e.message || e));
+        });
     }
   }
 </script>
