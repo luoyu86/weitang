@@ -19,7 +19,7 @@
 <style>
   .page {
     flex-direction: column;
-    align-items: center;
+    align-items: center;   
     padding: 24px;
     background-color: #0b0b0b;
   }
@@ -90,6 +90,9 @@
         autoLock: true,
         log: (m) => this.appendLog(m)
       })
+      // 启动即探测蓝牙能力：界面已渲染，此调用即使失败也不影响显示；
+      // 无蓝牙时状态栏会明确提示「不支持」，而不会白屏或卡住。
+      this.probe()
     },
     appendLog(line) {
       this.logs = (this.logs || []).concat([line])
@@ -115,36 +118,38 @@
         self.appendLog('ERR ' + (e.message || e))
       }
     },
-    async openLock() {
+    openLock() {
       const self = this
       self.setStatus('开锁中…')
       self.appendLog('>> openLock')
-      try {
-        const r = await self.client.openLock()
-        if (r.success) {
-          self.setStatus('✅ 开锁成功' + (r.autoLock ? '（已设为自动回锁）' : ''))
-          self.appendLog('<< resultCode=' + r.resultCode)
-        } else {
-          self.setStatus('⚠️ 开锁返回失败 resultCode=' + r.resultCode)
-          self.appendLog('<< resultCode=' + r.resultCode)
-        }
-      } catch (e) {
-        self.setStatus('❌ 开锁失败: ' + (e.message || e))
-        self.appendLog('ERR ' + (e.message || e))
-      }
+      self.client.openLock()
+        .then(function (r) {
+          if (r.success) {
+            self.setStatus('✅ 开锁成功' + (r.autoLock ? '（已设为自动回锁）' : ''))
+            self.appendLog('<< resultCode=' + r.resultCode)
+          } else {
+            self.setStatus('⚠️ 开锁返回失败 resultCode=' + r.resultCode)
+            self.appendLog('<< resultCode=' + r.resultCode)
+          }
+        })
+        .catch(function (e) {
+          self.setStatus('❌ 开锁失败: ' + (e.message || e))
+          self.appendLog('ERR ' + (e.message || e))
+        })
     },
-    async closeLock() {
+    closeLock() {
       const self = this
       self.setStatus('关锁中…')
       self.appendLog('>> closeLock')
-      try {
-        const r = await self.client.closeLock()
-        self.setStatus('✅ 关锁指令已发送')
-        self.appendLog('<< resultCode=' + r.resultCode)
-      } catch (e) {
-        self.setStatus('❌ 关锁失败: ' + (e.message || e))
-        self.appendLog('ERR ' + (e.message || e))
-      }
+      self.client.closeLock()
+        .then(function (r) {
+          self.setStatus('✅ 关锁指令已发送')
+          self.appendLog('<< resultCode=' + r.resultCode)
+        })
+        .catch(function (e) {
+          self.setStatus('❌ 关锁失败: ' + (e.message || e))
+          self.appendLog('ERR ' + (e.message || e))
+        })
     }
   }
 </script>

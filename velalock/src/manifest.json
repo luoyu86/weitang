@@ -6,6 +6,7 @@
   "versionCode": 1,
   "minPlatformVersion": 1000,
   "features": [
+    { "name": "system.router" },
     { "name": "system.bluetooth.ble" }
   ],
   "permissions": [],

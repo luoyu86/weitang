@@ -5,19 +5,27 @@
 
 import * as P from './protocol.js'
 
-// 容错获取 @system.bluetooth.ble：
-// 模拟器/S4 等可能未开放 JS 蓝牙模块，静态 import 会令整个 ble.js 加载失败进而白屏。
-// 改为运行时获取，缺失时安全降级为 null（isBleSupported 返回 false，UI 友好提示）。
-let bluetoothBLE = null
-try {
-  if (typeof require !== 'undefined') {
-    bluetoothBLE = require('@system.bluetooth.ble')
+// 延迟获取 @system.bluetooth.ble：
+// 关键 —— 模块加载阶段【完全不触碰】蓝牙系统模块，确保即使设备未开放 JS 蓝牙
+// （如 S4 模拟器、或部分 S4 真机），ble.js 也能正常加载，App 界面照常渲染、绝不白屏。
+// 蓝牙模块仅在真正要连接时才动态获取，缺失则安全降级为 null（UI 友好提示）。
+function getBleModule() {
+  try {
+    if (typeof require !== 'undefined') {
+      const m = require('@system.bluetooth.ble')
+      if (m) return m
+    }
+  } catch (e) {
+    // 模块不存在或运行时加载失败 → 降级，不抛出，保证模块可加载
   }
-} catch (e) {
-  bluetoothBLE = null
-}
-if (!bluetoothBLE && typeof globalThis !== 'undefined') {
-  bluetoothBLE = globalThis['@system.bluetooth.ble'] || null
+  try {
+    if (typeof globalThis !== 'undefined') {
+      return globalThis['@system.bluetooth.ble'] || null
+    }
+  } catch (e) {
+    // ignore
+  }
+  return null
 }
 
 const SERVICE_UUID = '000018f0-0000-1000-8000-00805f9b34fb'
@@ -111,19 +119,21 @@ export class LockClient {
 
   // 探测本设备是否支持 JS BLE（S4 等多型号可能不可用）
   static isBleSupported() {
-    return !!(bluetoothBLE && typeof bluetoothBLE.createGattClientDevice === 'function')
+    const ble = getBleModule()
+    return !!(ble && typeof ble.createGattClientDevice === 'function')
   }
 
   connect() {
     const self = this
     return new Promise(function (resolve, reject) {
-      if (!LockClient.isBleSupported()) {
+      const ble = getBleModule()
+      if (!ble || typeof ble.createGattClientDevice !== 'function') {
         reject(new Error('@system.bluetooth.ble 不可用：本设备(可能 S4/澎湃OS3)未开放 JS 蓝牙，需改用 Vela 原生 C 开发'))
         return
       }
       let dev
       try {
-        dev = bluetoothBLE.createGattClientDevice(self.mac, 'PUBLIC')
+        dev = ble.createGattClientDevice(self.mac, 'PUBLIC')
       } catch (e) {
         reject(new Error('createGattClientDevice 失败: ' + (e.message || e)))
         return
@@ -234,61 +244,59 @@ export class LockClient {
     })
   }
 
-  async openLock() {
-    await this.connect()
-    await this._getServices()
-    await this._enableNotify()
-
-    // 1) 取随机串 getRangeCode
-    const grc = P.buildGetRangeCode(this.dataSecret)
-    const randWaiter = this._waitPacket(function (tlvs) {
-      return !!tlvs[100]
-    }, 8000)
-    await this._write(grc)
-    const r1 = await randWaiter
-    const randStr = r1[100]
-
-    // 2) 开锁 openLock(用户密钥, 随机串, 自动锁)
-    const op = P.buildOpenLock(this.userKey, randStr, this.autoLock, this.dataSecret)
-    const openWaiter = this._waitPacket(function (tlvs) {
-      return !!tlvs[1]
-    }, 8000)
-    await this._write(op)
-    const r2 = await openWaiter
-    const rc = r2[1]
-    const ok = !!rc && rc.length >= 2 && rc[0] === 0 && rc[1] === 0
-    await this.disconnect()
-    return {
-      success: ok,
-      resultCode: P.bytesToHex(rc || new Uint8Array(0)),
-      autoLock: this.autoLock
-    }
+  openLock() {
+    const self = this
+    return self.connect()
+      .then(function () { return self._getServices() })
+      .then(function () { return self._enableNotify() })
+      .then(function () {
+        const grc = P.buildGetRangeCode(self.dataSecret)
+        const randWaiter = self._waitPacket(function (tlvs) { return !!tlvs[100] }, 8000)
+        return self._write(grc).then(function () { return randWaiter })
+      })
+      .then(function (r1) {
+        const randStr = r1[100]
+        const op = P.buildOpenLock(self.userKey, randStr, self.autoLock, self.dataSecret)
+        const openWaiter = self._waitPacket(function (tlvs) { return !!tlvs[1] }, 8000)
+        return self._write(op).then(function () { return openWaiter })
+      })
+      .then(function (r2) {
+        const rc = r2[1]
+        const ok = !!rc && rc.length >= 2 && rc[0] === 0 && rc[1] === 0
+        return self.disconnect().then(function () {
+          return {
+            success: ok,
+            resultCode: P.bytesToHex(rc || new Uint8Array(0)),
+            autoLock: self.autoLock
+          }
+        })
+      })
   }
 
-  async closeLock() {
-    await this.connect()
-    await this._getServices()
-    await this._enableNotify()
-
-    const grc = P.buildGetRangeCode(this.dataSecret)
-    const randWaiter = this._waitPacket(function (tlvs) {
-      return !!tlvs[100]
-    }, 8000)
-    await this._write(grc)
-    const r1 = await randWaiter
-    const randStr = r1[100]
-
-    const cl = P.buildCloseLock(randStr, this.dataSecret)
-    const closeWaiter = this._waitPacket(function (tlvs) {
-      return !!tlvs[1] || !!tlvs[25]
-    }, 8000)
-    await this._write(cl)
-    const r2 = await closeWaiter
-    await this.disconnect()
-    return {
-      success: true,
-      resultCode: P.bytesToHex(r2[1] || new Uint8Array(0))
-    }
+  closeLock() {
+    const self = this
+    return self.connect()
+      .then(function () { return self._getServices() })
+      .then(function () { return self._enableNotify() })
+      .then(function () {
+        const grc = P.buildGetRangeCode(self.dataSecret)
+        const randWaiter = self._waitPacket(function (tlvs) { return !!tlvs[100] }, 8000)
+        return self._write(grc).then(function () { return randWaiter })
+      })
+      .then(function (r1) {
+        const randStr = r1[100]
+        const cl = P.buildCloseLock(randStr, self.dataSecret)
+        const closeWaiter = self._waitPacket(function (tlvs) { return !!tlvs[1] || !!tlvs[25] }, 8000)
+        return self._write(cl).then(function () { return closeWaiter })
+      })
+      .then(function (r2) {
+        return self.disconnect().then(function () {
+          return {
+            success: true,
+            resultCode: P.bytesToHex(r2[1] || new Uint8Array(0))
+          }
+        })
+      })
   }
 
   disconnect() {

@@ -76,3 +76,13 @@ node test_protocol.mjs
 - ✅ 已成功 push 到 **S4 模拟器 `xiaomi_s4_41`** 并启动运行（验证框架/manifest/ux/资源打包全部正确）。
 - ✅ BLE 层 `ble.js` 改为运行时 `require('@system.bluetooth.ble')` + 容错：模块缺失时降级为 null、`isBleSupported()` 返回 false、UI 友好提示，**绝不因蓝牙模块不存在而白屏**。
 - ⏳ 待办：在**真 S4 手表**上用 AIoT-IDE 连设备 → 点「探测 BLE」确认 JS 蓝牙是否放行；若放行则实测开锁/关锁，若不放行则转 Vela 原生 C。
+
+## 无蓝牙也能正常显示界面（2026-07-08 加固）
+
+> 用户要求：设备没有蓝牙能力时，App 界面也必须正常展示，不能白屏。
+
+- **根因预防**：最初 `ble.js` 在**模块加载阶段**就 `require('@system.bluetooth.ble')`。若 Vela 运行时在模块解析阶段因该模块缺失而抛错（try/catch 未必兜得住运行时的模块解析错误），`ble.js` 加载失败会连带 `index.ux` 一起白屏。
+- **修复**：把蓝牙模块获取**延迟到真正 `connect()` 时才做**（`getBleModule()` 函数，模块加载阶段**零依赖蓝牙**）；缺失时安全降级为 `null`，`isBleSupported()` 返回 `false`，UI 友好提示「不支持」。
+- `index.ux` 的 `onInit` **启动即自动探测**：界面先渲染，再显示蓝牙状态；无论支持与否都不白屏。
+- **验证**：`test_no_ble.mjs` 在「无蓝牙运行时」（ESM 环境，无 `require` / 无全局蓝牙模块）下 **4/4 通过**：① 模块加载成功 ② `isBleSupported()=false` ③ `LockClient` 可实例化 ④ `connect()` 友好拒绝（不崩溃）。`aiot build` 也成功。
+- 因此即使 S4 真机/模拟器完全没开放 JS 蓝牙，App 打开也是**完整界面 + 明确的不支持提示**，绝不会白屏。
